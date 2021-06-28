@@ -1,0 +1,2641 @@
+{
+	"info": {
+		"_postman_id": "e81bf83a-5f94-4e7d-8c37-8d0391b04de9",
+		"name": "Vavilon",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Registration",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Roman\",\r\n    \"lastName\": \"Lukashenko\",\r\n    \"login\": \"rlukashenko\",\r\n    \"password\": \"1111\",\r\n    \"email\": \"r.lukashenko@mail.ru\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://vavilon-dev.herokuapp.com/registration",
+					"protocol": "https",
+					"host": [
+						"vavilon-dev",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"registration"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Registration duplicate email example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Roman\",\r\n    \"lastName\": \"Lukashenko\",\r\n    \"login\": \"rlukashenko1\",\r\n    \"password\": \"1111\",\r\n    \"email\": \"r.lukashenko@mail.ru\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/registration",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"registration"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "82"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 27 Mar 2021 14:54:30 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"message\": \"User with email[r.lukashenko@mail.ru] already exists\"\n}"
+				},
+				{
+					"name": "Registration duplicate login example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Roman\",\r\n    \"lastName\": \"Lukashenko\",\r\n    \"login\": \"rlukashenko\",\r\n    \"password\": \"1111\",\r\n    \"email\": \"r.lukashenko@mail.ru\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/registration",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"registration"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "73"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 27 Mar 2021 14:54:14 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"message\": \"User with login[rlukashenko] already exists\"\n}"
+				},
+				{
+					"name": "Registration example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Roman\",\r\n    \"lastName\": \"Lukashenko\",\r\n    \"login\": \"rlukashenko\",\r\n    \"password\": \"1111\",\r\n    \"email\": \"r.lukashenko@mail.ru\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/registration",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"registration"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "66"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 27 Mar 2021 14:52:19 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"message\": \"User is successfully saved\",\n    \"userId\": 6\n}"
+				}
+			]
+		},
+		{
+			"name": "User activation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": 4,\r\n    \"activationCode\": \"27aa852d-a7b0-434a-ac00-9b737b05f1a2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://vavilon-dev.herokuapp.com/activateUser",
+					"protocol": "https",
+					"host": [
+						"vavilon-dev",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"activateUser"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "User activation: user is missing",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 7,\r\n    \"activationCode\": \"55fb5aee-d152-4948-96ba-092dc5252159\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/activateUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"activateUser"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "91"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 27 Mar 2021 14:57:57 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"message\": \"Failed to activate user: user with provided id doesn't exists\"\n}"
+				},
+				{
+					"name": "User activation example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 6,\r\n    \"activationCode\": \"55fb5aee-d152-4948-96ba-092dc5252159\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/activateUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"activateUser"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "59"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 27 Mar 2021 14:57:36 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"message\": \"User is successfully activated\"\n}"
+				},
+				{
+					"name": "User activation: wrong code",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 6,\r\n    \"activationCode\": \"55fb5aee-d152-4948-96ba-092dc52521591\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/activateUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"activateUser"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "76"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 27 Mar 2021 14:58:24 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"message\": \"Failed to activate user: wrong activation code\"\n}"
+				},
+				{
+					"name": "User activation: the code is expired",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 6,\r\n    \"activationCode\": \"55fb5aee-d152-4948-96ba-092dc5252159\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/activateUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"activateUser"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "81"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 27 Mar 2021 14:58:57 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"message\": \"Failed to activate user: activation code is expired\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"login\": \"rlukashenko\",\r\n    \"password\": \"1111\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://vavilon-dev.herokuapp.com/login",
+					"protocol": "https",
+					"host": [
+						"vavilon-dev",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Login example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"rlukashenko\",\r\n    \"password\": \"1111\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "JSESSIONID=A002A88937E5B4900EA1440AE61E4410; Path=/; HttpOnly"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "68"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 27 Mar 2021 15:00:36 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Authentication is successful\",\n    \"success\": true,\n    \"code\": 200\n}"
+				},
+				{
+					"name": "Login: auth failed",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"rlukashenko1\",\r\n    \"password\": \"1111\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "65"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 27 Mar 2021 15:01:09 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Authentication is failed\",\n    \"success\": false,\n    \"code\": 401\n}"
+				}
+			]
+		},
+		{
+			"name": "Home(Profile info)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://vavilon-dev.herokuapp.com/home",
+					"protocol": "https",
+					"host": [
+						"vavilon-dev",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"home"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Home(Profile info)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/home",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"home"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 27 Mar 2021 15:02:29 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"userId\": 6,\n    \"name\": \"Roman\",\n    \"login\": \"rlukashenko\",\n    \"active\": true,\n    \"activationCodeDateEnd\": \"2021-03-21T21:00:00.000+00:00\",\n    \"email\": \"r.lukashenko@mail.ru\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Save product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productId\": null,\r\n    \"name\": \"TEST_PRODUCT\",\r\n    \"description\": \"TEST_DESCRIPTION\",\r\n    \"productCategory\": {\r\n        \"productCategoryId\": 1\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://vavilon-dev.herokuapp.com/product/saveProduct",
+					"protocol": "https",
+					"host": [
+						"vavilon-dev",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"product",
+						"saveProduct"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update product ",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\": 5,\r\n    \"name\": \"TEST_PRODUCT_#1\",\r\n    \"description\": \"TEST_DESCRIPTION\",\r\n    \"productCategory\": {\r\n        \"productCategoryId\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/product/saveProduct",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"product",
+								"saveProduct"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "72"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 27 Mar 2021 15:09:12 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"productId\": 5,\n    \"success\": true,\n    \"message\": \"Product is successfully saved\"\n}"
+				},
+				{
+					"name": "Save product",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\": null,\r\n    \"name\": \"TEST_PRODUCT\",\r\n    \"description\": \"TEST_DESCRIPTION\",\r\n    \"productCategory\": {\r\n        \"productCategoryId\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/product/saveProduct",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"product",
+								"saveProduct"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "72"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 27 Mar 2021 15:08:33 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"productId\": 5,\n    \"success\": true,\n    \"message\": \"Product is successfully saved\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Search products",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productCategoryId\": 1,\r\n    \"start\": 0,\r\n    \"limit\": 50,\r\n    \"sort\": {\r\n        \"property\": \"name\",\r\n        \"direction\": \"ASC\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://vavilon-dev.herokuapp.com/product/listProducts",
+					"protocol": "https",
+					"host": [
+						"vavilon-dev",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"product",
+						"listProducts"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Search products",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productCategoryId\": 1,\r\n    \"start\": 0,\r\n    \"limit\": 50,\r\n    \"sort\": {\r\n        \"property\": \"name\",\r\n        \"direction\": \"ASC\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/product/listProducts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"product",
+								"listProducts"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "181"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 27 Mar 2021 15:13:34 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"result\": [\n        {\n            \"productId\": 5,\n            \"name\": \"TEST_PRODUCT_#1\",\n            \"description\": \"TEST_DESCRIPTION\",\n            \"category\": \"TEST_PRODUCT_CATEGORY\",\n            \"categoryId\": 1\n        }\n    ],\n    \"total\": 1,\n    \"success\": true,\n    \"message\": \"Success\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Send reset password email",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "r.lukashenko@mail.ru"
+				},
+				"url": {
+					"raw": "https://vavilon-dev.herokuapp.com/sendResetPasswordEmail",
+					"protocol": "https",
+					"host": [
+						"vavilon-dev",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"sendResetPasswordEmail"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Send reset password email: User with provided email doesn't exist",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "r.lukashenko@mail.ru111"
+						},
+						"url": {
+							"raw": "http://localhost:8080/sendResetPasswordEmail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sendResetPasswordEmail"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "84"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 27 Mar 2021 15:17:51 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"message\": \"User with email[r.lukashenko@mail.ru111] doesn't exist\"\n}"
+				},
+				{
+					"name": "Send reset password email",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "r.lukashenko@mail.ru"
+						},
+						"url": {
+							"raw": "http://localhost:8080/sendResetPasswordEmail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sendResetPasswordEmail"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "101"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 27 Mar 2021 15:16:05 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"expiryDate\": \"2021-03-29T03:16:03.876+00:00\",\n    \"success\": true,\n    \"message\": \"Reset password mail is sent\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Reset password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": 6,\r\n    \"token\": \"60eeccba-331b-4c16-b455-f128b861ea7d\",\r\n    \"password\": \"2222\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://vavilon-dev.herokuapp.com/resetPassword",
+					"protocol": "https",
+					"host": [
+						"vavilon-dev",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"resetPassword"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Reset password: wrong userId or token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 69,\r\n    \"token\": \"60eeccba-331b-4c16-b455-f128b861ea7d\",\r\n    \"password\": \"2222\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/resetPassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resetPassword"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "69"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 27 Mar 2021 15:20:49 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"message\": \"Couldn't find the token with userId[69]\"\n}"
+				},
+				{
+					"name": "Reset password",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 6,\r\n    \"token\": \"60eeccba-331b-4c16-b455-f128b861ea7d\",\r\n    \"password\": \"2222\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/resetPassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resetPassword"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "61"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 27 Mar 2021 15:22:18 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"message\": \"Password is changed successfully\"\n}"
+				},
+				{
+					"name": "Reset password: token is expired",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 6,\r\n    \"token\": \"60eeccba-331b-4c16-b455-f128b861ea7d\",\r\n    \"password\": \"2222\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/resetPassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"resetPassword"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "50"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 27 Mar 2021 15:21:27 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"message\": \"The token is expired\"\n}"
+				}
+			]
+		},
+		{
+			"name": "List product categories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://vavilon-dev.herokuapp.com/product/productCategories",
+					"protocol": "https",
+					"host": [
+						"vavilon-dev",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"product",
+						"productCategories"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "List product categories",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/product/productCategories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"product",
+								"productCategories"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 27 Mar 2021 15:49:24 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"productCategoryId\": 1,\n        \"name\": \"TEST_PRODUCT_CATEGORY\",\n        \"description\": \"TEST\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Upload product attachment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "inputFile",
+							"type": "file",
+							"src": "/F:/526.jpg"
+						},
+						{
+							"key": "productId",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://vavilon-dev.herokuapp.com/product/uploadProductAttachment",
+					"protocol": "https",
+					"host": [
+						"vavilon-dev",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"product",
+						"uploadProductAttachment"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Upload product attachment",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "inputFile",
+									"type": "file",
+									"src": "/F:/526.jpg"
+								},
+								{
+									"key": "productId",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/product/uploadProductAttachment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"product",
+								"uploadProductAttachment"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "62"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 Apr 2021 10:29:01 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"message\": \"The file is uploaded successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Save contact",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": 3,\r\n    \"name\": \"Personal email\",\r\n    \"value\": \"r.lukashenko@mail.ru\",\r\n    \"contactType\": {\r\n        \"contactTypeId\": 1\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://vavilon-dev.herokuapp.com/contact/save",
+					"protocol": "https",
+					"host": [
+						"vavilon-dev",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"contact",
+						"save"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Save contact",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 3,\r\n    \"name\": \"Personal email\",\r\n    \"value\": \"r.lukashenko@mail.ru\",\r\n    \"contactType\": {\r\n        \"contactTypeId\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://vavilon-dev.herokuapp.com/contact/save",
+							"protocol": "https",
+							"host": [
+								"vavilon-dev",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"contact",
+								"save"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "72"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 28 Jun 2021 09:46:25 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"contactId\": 3,\n    \"success\": true,\n    \"message\": \"Contact is successfully saved\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get all contact types",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://vavilon-dev.herokuapp.com/contact/getContactTypes",
+					"protocol": "https",
+					"host": [
+						"vavilon-dev",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"contact",
+						"getContactTypes"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get all contact types",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://vavilon-dev.herokuapp.com/contact/getContactTypes",
+							"protocol": "https",
+							"host": [
+								"vavilon-dev",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"contact",
+								"getContactTypes"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 28 Jun 2021 09:47:39 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"contactTypeId\": 1,\n        \"name\": \"EMAIL\",\n        \"description\": \"User email\"\n    },\n    {\n        \"contactTypeId\": 2,\n        \"name\": \"MOBILE_PHONE\",\n        \"description\": \"User mobile phone\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get all contacts of the user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://vavilon-dev.herokuapp.com/contact/getUserContacts?userId=3",
+					"protocol": "https",
+					"host": [
+						"vavilon-dev",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"contact",
+						"getUserContacts"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get all contacts of the user",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/contact/getUserContacts?userId=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"contact",
+								"getUserContacts"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 28 Jun 2021 09:53:53 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"contactId\": 3,\n        \"userId\": 3,\n        \"name\": \"Personal email\",\n        \"value\": \"r.lukashenko@mail.ru\",\n        \"contactType\": {\n            \"contactTypeId\": 1,\n            \"name\": \"EMAIL\",\n            \"description\": \"User email\"\n        }\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Save announcement",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userClient\": {\r\n        \"userId\": 4,\r\n        \"userClientType\": {\r\n            \"userClientTypeId\": 1\r\n        }\r\n    },\r\n    \"address\": {\r\n        \"street\": \"dummy street #1\",\r\n        \"city\": \"dummy city #1\",\r\n        \"country\": \"Dummy country #1\"\r\n    },\r\n    \"contact\": {\r\n        \"contactId\": null,\r\n        \"userId\": 4,\r\n        \"name\": \"Personal email\",\r\n        \"value\": \"r.lukashenko@mail.ru\",\r\n        \"contactType\": {\r\n            \"contactTypeId\": 1\r\n        }\r\n    },\r\n    \"announcementType\": {\r\n        \"announcementTypeId\": 1\r\n    },\r\n    \"product\": {\r\n        \"productId\": null,\r\n        \"name\": \"TEST_PRODUCT_#1\",\r\n        \"description\": \"TEST_DESCRIPTION\",\r\n        \"productCategory\": {\r\n            \"productCategoryId\": 1\r\n        }\r\n    },\r\n    \"measure\": {\r\n        \"measureCode\": \"M-1\"\r\n    },\r\n    \"currencySign\": \"EUR\",\r\n    \"price\": 100,\r\n    \"text\": \"Dummy annoucement\",\r\n    \"params\": {\r\n        \"tags\": \"cheap\"\r\n    },\r\n    \"announcementDate\": \"28-06-2021\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://vavilon-dev.herokuapp.com/announcement/save",
+					"protocol": "https",
+					"host": [
+						"vavilon-dev",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"announcement",
+						"save"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Save announcement",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userClient\": {\r\n        \"userId\": 4,\r\n        \"userClientType\": {\r\n            \"userClientTypeId\": 1\r\n        }\r\n    },\r\n    \"address\": {\r\n        \"street\": \"dummy street #1\",\r\n        \"city\": \"dummy city #1\",\r\n        \"country\": \"Dummy country #1\"\r\n    },\r\n    \"contact\": {\r\n        \"contactId\": null,\r\n        \"userId\": 4,\r\n        \"name\": \"Personal email\",\r\n        \"value\": \"r.lukashenko@mail.ru\",\r\n        \"contactType\": {\r\n            \"contactTypeId\": 1\r\n        }\r\n    },\r\n    \"announcementType\": {\r\n        \"announcementTypeId\": 1\r\n    },\r\n    \"product\": {\r\n        \"productId\": null,\r\n        \"name\": \"TEST_PRODUCT_#1\",\r\n        \"description\": \"TEST_DESCRIPTION\",\r\n        \"productCategory\": {\r\n            \"productCategoryId\": 1\r\n        }\r\n    },\r\n    \"measure\": {\r\n        \"measureCode\": \"M-1\"\r\n    },\r\n    \"currencySign\": \"EUR\",\r\n    \"price\": 100,\r\n    \"text\": \"Dummy annoucement\",\r\n    \"params\": {\r\n        \"tags\": \"cheap\"\r\n    },\r\n    \"announcementDate\": \"28-06-2021\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://vavilon-dev.herokuapp.com/announcement/save",
+							"protocol": "https",
+							"host": [
+								"vavilon-dev",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"announcement",
+								"save"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "111"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 28 Jun 2021 11:38:40 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"productId\": 8,\n    \"contactId\": 10,\n    \"success\": true,\n    \"announcementId\": 2,\n    \"message\": \"Announcement is successfully saved\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get all announcement types",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://vavilon-dev.herokuapp.com/announcement/getAnnouncementTypes",
+					"protocol": "https",
+					"host": [
+						"vavilon-dev",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"announcement",
+						"getAnnouncementTypes"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get all announcement types",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/announcement/getAnnouncementTypes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"announcement",
+								"getAnnouncementTypes"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 28 Jun 2021 12:11:18 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"announcementTypeId\": 1,\n        \"name\": \"VIP\",\n        \"description\": \"VIP\"\n    },\n    {\n        \"announcementTypeId\": 2,\n        \"name\": \"REGULAR\",\n        \"description\": \"regular...\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get measures",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://vavilon-dev.herokuapp.com/announcement/getMeasures",
+					"protocol": "https",
+					"host": [
+						"vavilon-dev",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"announcement",
+						"getMeasures"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get measures",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/announcement/getMeasures",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"announcement",
+								"getMeasures"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 28 Jun 2021 12:10:53 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"measureCode\": \"M-1\",\n        \"name\": \"100-500kg\",\n        \"description\": null\n    },\n    {\n        \"measureCode\": \"M-2\",\n        \"name\": \"500-1000kg\",\n        \"description\": null\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Search announcements",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\": \"dummy test              annoucement            \",\r\n    \"start\": 0,\r\n    \"limit\": 50,\r\n    \"sort\": {\r\n        \"property\": \"productName\",\r\n        \"direction\": \"ASC\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://vavilon-dev.herokuapp.com/announcement/listAnnouncements",
+					"protocol": "https",
+					"host": [
+						"vavilon-dev",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"announcement",
+						"listAnnouncements"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Search announcements",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"dummy test              annoucement            \",\r\n    \"start\": 0,\r\n    \"limit\": 50,\r\n    \"sort\": {\r\n        \"property\": \"productName\",\r\n        \"direction\": \"ASC\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://vavilon-dev.herokuapp.com/announcement/listAnnouncements",
+							"protocol": "https",
+							"host": [
+								"vavilon-dev",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"announcement",
+								"listAnnouncements"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "181"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 28 Jun 2021 12:09:51 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"result\": [\n        {\n            \"announcementId\": 2,\n            \"image\": \"1aCPZH3DrIbfq9IGe5UVav6UrjYMrC47M\",\n            \"productName\": \"TEST_PRODUCT_#1\",\n            \"text\": \"Dummy annoucement\"\n        }\n    ],\n    \"total\": 1,\n    \"success\": true,\n    \"message\": \"Success\"\n}"
+				}
+			]
+		}
+	]
+}
