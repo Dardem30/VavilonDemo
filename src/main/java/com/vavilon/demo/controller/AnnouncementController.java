@@ -6,9 +6,7 @@ import com.vavilon.demo.bo.announcment.AnnouncementType;
 import com.vavilon.demo.bo.announcment.Measure;
 import com.vavilon.demo.bo.bean.ResponseForm;
 import com.vavilon.demo.bo.client.UserClientType;
-import com.vavilon.demo.bo.product.ProductOverviewItem;
 import com.vavilon.demo.bo.search.AnnouncementListFilter;
-import com.vavilon.demo.bo.search.ProductListFilter;
 import com.vavilon.demo.bo.search.util.SearchResult;
 import com.vavilon.demo.service.AnnouncementService;
 import lombok.AllArgsConstructor;
@@ -69,5 +67,9 @@ public class AnnouncementController extends CommonController {
             logger.error("Failed to search announcements", e);
             writeResponseAsJSON(new ResponseForm<>("Failed to search announcements", false), response, null);
         }
+    }
+    @GetMapping(path = "/read")
+    public @ResponseBody Announcement read(@RequestParam final Long announcementId) {
+        return announcementService.read(announcementId);
     }
 }
