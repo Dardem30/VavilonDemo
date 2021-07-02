@@ -34,6 +34,6 @@ public class AnnouncementService {
 
     @Transactional(readOnly = true)
     public Announcement read(final Long announcementId) {
-        return announcementRepository.getOne(announcementId);
+        return announcementRepository.findById(announcementId).get();
     }
 }
