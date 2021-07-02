@@ -8,4 +8,5 @@ import lombok.Setter;
 @Setter
 public class AnnouncementListFilter extends ListFilter {
     private String content;
+    private Long moderationStatusId;
 }

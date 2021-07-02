@@ -21,4 +21,6 @@ public class AnnouncementOverviewItem {
     private String productName;
     @Column(name = "text")
     private String text;
+    @Column(name = "moderationstatusid")
+    private Long moderationStatusId;
 }

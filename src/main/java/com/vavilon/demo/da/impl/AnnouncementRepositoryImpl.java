@@ -17,7 +17,7 @@ public class AnnouncementRepositoryImpl extends BaseRepository implements Announ
     @Override
     public SearchResult<AnnouncementOverviewItem> listAnnouncements(AnnouncementListFilter listFilter) {
         return resolvePredicates(AnnouncementOverviewItem.class, listFilter, (root, builder) -> {
-            final List<Predicate> predicates = new ArrayList<>(10);
+            final List<Predicate> predicates = new ArrayList<>(12);
             if (StringUtils.isNotEmpty(listFilter.getContent())) {
                 for (String keyword : listFilter.getContent().split(" ")) {
                     keyword = "%" + keyword.toLowerCase() + "%";
@@ -26,6 +26,9 @@ public class AnnouncementRepositoryImpl extends BaseRepository implements Announ
                             builder.like(builder.lower(root.get(AnnouncementOverviewItem_.text)), keyword)
                     ));
                 }
+            }
+            if (listFilter.getModerationStatusId() != null) {
+                predicates.add(builder.equal(root.get(AnnouncementOverviewItem_.moderationStatusId), listFilter.getModerationStatusId()));
             }
             return predicates;
         });
