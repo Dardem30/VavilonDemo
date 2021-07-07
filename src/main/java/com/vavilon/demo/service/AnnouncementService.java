@@ -26,6 +26,7 @@ public class AnnouncementService {
         final ModerationStatus toBeReviewedStatus = new ModerationStatus();
         toBeReviewedStatus.setModerationStatusId(IConstants.MODERATION_STATUS_TO_BE_REVIEWED_ID);
         announcement.setModerationStatus(toBeReviewedStatus);
+        announcement.getProduct().setUserId(User.getCurrentLoggedInUser().getUserId());
         announcementRepository.save(announcement);
         return new ResponseForm<>("Announcement is successfully saved", true, announcement);
     }

@@ -8,6 +8,7 @@ import com.vavilon.demo.bo.product.ProductOverviewItem;
 import com.vavilon.demo.bo.search.ProductListFilter;
 import com.vavilon.demo.bo.search.util.SearchResult;
 import com.vavilon.demo.da.ProductRepository;
+import com.vavilon.demo.service.security.User;
 import com.vavilon.demo.service.util.GoogleDriveService;
 import com.vavilon.demo.service.util.UtilityService;
 import com.vavilon.demo.util.CommonUtils;
@@ -27,6 +28,7 @@ public class ProductService {
 
     @Transactional
     public ResponseForm<Product> saveProduct(final Product product) {
+        product.setUserId(User.getCurrentLoggedInUser().getUserId());
         productRepository.save(product);
         return new ResponseForm<>("Product is successfully saved", true, product);
     }
