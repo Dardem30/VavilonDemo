@@ -3,6 +3,7 @@ package com.vavilon.demo.bo.user;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.vavilon.demo.bo.bean.Recipient;
+import com.vavilon.demo.bo.enums.Role;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -34,6 +35,9 @@ public class AppUser {
     private Date activationCodeDateEnd;
     @Column(name = "email")
     private String email;
+    @Column(name = "`role`")
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     public Recipient toRecipient() {
         final Recipient recipient = new Recipient();

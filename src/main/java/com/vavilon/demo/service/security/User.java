@@ -1,6 +1,7 @@
 package com.vavilon.demo.service.security;
 
 import com.vavilon.demo.bo.user.AppUser;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -33,6 +34,11 @@ public class User extends org.springframework.security.core.userdetails.User {
 
     public static User get() {
         return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    }
+
+    public static AppUser getCurrentLoggedInUser() {
+        if (SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken) return null;
+        return get().getAppUser();
     }
 
 }

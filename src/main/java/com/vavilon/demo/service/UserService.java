@@ -1,10 +1,11 @@
 package com.vavilon.demo.service;
 
-import com.vavilon.demo.bo.user.AppUser;
 import com.vavilon.demo.bo.PasswordResetToken;
 import com.vavilon.demo.bo.bean.ActivateUserForm;
 import com.vavilon.demo.bo.bean.ResetPasswordForm;
 import com.vavilon.demo.bo.bean.ResponseForm;
+import com.vavilon.demo.bo.enums.Role;
+import com.vavilon.demo.bo.user.AppUser;
 import com.vavilon.demo.da.AppUserRepository;
 import com.vavilon.demo.da.PasswordResetTokenRepository;
 import com.vavilon.demo.util.ContextHolder;
@@ -44,6 +45,7 @@ public class UserService {
         final Calendar activationCodeDateEnd = Calendar.getInstance();
         activationCodeDateEnd.add(Calendar.HOUR, contextHolder.getActivationCodeLifespanInHours());
         user.setActive(false);
+        user.setRole(Role.USER);
         user.setActivationCode(UUID.randomUUID().toString());
         user.setActivationCodeDateEnd(activationCodeDateEnd.getTime());
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));

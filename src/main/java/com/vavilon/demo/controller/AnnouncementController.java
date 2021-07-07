@@ -1,9 +1,7 @@
 package com.vavilon.demo.controller;
 
-import com.vavilon.demo.bo.announcment.Announcement;
-import com.vavilon.demo.bo.announcment.AnnouncementOverviewItem;
-import com.vavilon.demo.bo.announcment.AnnouncementType;
-import com.vavilon.demo.bo.announcment.Measure;
+import com.vavilon.demo.bo.announcment.*;
+import com.vavilon.demo.bo.bean.ModerationForm;
 import com.vavilon.demo.bo.bean.ResponseForm;
 import com.vavilon.demo.bo.client.UserClientType;
 import com.vavilon.demo.bo.search.AnnouncementListFilter;
@@ -71,5 +69,15 @@ public class AnnouncementController extends CommonController {
     @GetMapping(path = "/read")
     public @ResponseBody Announcement read(@RequestParam final Long announcementId) {
         return announcementService.read(announcementId);
+    }
+    @PostMapping(path = "/updateModerationStatus")
+    public void updateModerationStatus(@RequestBody final ModerationForm moderationForm) {
+        announcementService.updateModerationStatus(moderationForm);
+    }
+
+    @GetMapping(path = "/getModerationStatuses")
+    public @ResponseBody
+    List<ModerationStatus> getModerationStatuses() {
+        return readAll(ModerationStatus.class);
     }
 }

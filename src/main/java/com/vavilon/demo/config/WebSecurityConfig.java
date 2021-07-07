@@ -84,6 +84,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/sendResetPasswordEmail").permitAll()
                 .antMatchers("/resetPassword").permitAll()
                 .antMatchers("/activateUser").permitAll()
+                .antMatchers("/announcement/listAnnouncements").permitAll()
+                .antMatchers("/product/productCategories").permitAll()
+                .antMatchers("/contact/getContactTypes").permitAll()
+                .antMatchers("/announcement/getUserClientTypes").permitAll()
+                .antMatchers("/announcement/getAnnouncementTypes").permitAll()
+                .antMatchers("/announcement/getMeasures").permitAll()
+                .antMatchers("/announcement/read").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(

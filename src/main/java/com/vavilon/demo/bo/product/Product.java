@@ -16,6 +16,8 @@ public class Product {
     private String name;
     @Column(name = "description")
     private String description;
+    @Column(name = "userid")
+    private Long userId;
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "productcategoryid")
     private ProductCategory productCategory;

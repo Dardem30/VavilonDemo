@@ -6,12 +6,15 @@ import com.vavilon.demo.bo.product.ProductCategory;
 import com.vavilon.demo.bo.product.ProductOverviewItem;
 import com.vavilon.demo.bo.search.ProductListFilter;
 import com.vavilon.demo.bo.search.util.SearchResult;
+import com.vavilon.demo.bo.user.AppUser;
 import com.vavilon.demo.service.ProductService;
+import com.vavilon.demo.service.security.User;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -65,5 +68,11 @@ public class ProductController extends CommonController {
     public @ResponseBody
     List<ProductCategory> productCategories() {
         return productService.productCategories();
+    }
+
+    @GetMapping(path = "/getUserProducts")
+    public @ResponseBody List<Product> getUserProducts() {
+        final AppUser user = User.getCurrentLoggedInUser();
+        return user == null ? new ArrayList<>() : productService.getUserProducts(user.getUserId());
     }
 }

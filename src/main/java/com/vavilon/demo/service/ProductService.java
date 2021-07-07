@@ -50,4 +50,9 @@ public class ProductService {
         attachment.setProductId(productId);
         utilityService.mergeObject(attachment);
     }
+
+    @Transactional(readOnly = true)
+    public List<Product> getUserProducts(final Long userId) {
+        return productRepository.findAllByUserId(userId);
+    }
 }

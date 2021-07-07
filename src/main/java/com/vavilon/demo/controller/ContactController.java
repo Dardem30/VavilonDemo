@@ -1,13 +1,16 @@
 package com.vavilon.demo.controller;
 
 import com.vavilon.demo.bo.bean.ResponseForm;
+import com.vavilon.demo.bo.user.AppUser;
 import com.vavilon.demo.bo.user.Contact;
 import com.vavilon.demo.bo.user.ContactType;
 import com.vavilon.demo.service.ContactService;
+import com.vavilon.demo.service.security.User;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -34,7 +37,8 @@ public class ContactController extends CommonController {
         return readAll(ContactType.class);
     }
     @GetMapping(path = "/getUserContacts")
-    public @ResponseBody List<Contact> getUserContacts(@RequestParam final Long userId) {
-        return contactService.getUserContacts(userId);
+    public @ResponseBody List<Contact> getUserContacts() {
+        final AppUser user = User.getCurrentLoggedInUser();
+        return user == null ? new ArrayList<>() : contactService.getUserContacts(user.getUserId());
     }
 }
