@@ -9,4 +9,8 @@ import lombok.Setter;
 public class AnnouncementListFilter extends ListFilter {
     private String content;
     private Long moderationStatusId;
+    private String measureCode;
+    private Double priceRangeStart;
+    private Double priceRangeEnd;
+    private String currencySign;
 }

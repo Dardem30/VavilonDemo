@@ -30,6 +30,19 @@ public class AnnouncementRepositoryImpl extends BaseRepository implements Announ
                         builder.like(builder.lower(root.get(AnnouncementOverviewItem_.text)), searchText)
                 ));
             }
+            if (StringUtils.isNotEmpty(listFilter.getMeasureCode())) {
+                predicates.add(builder.equal(root.get(AnnouncementOverviewItem_.measureCode), listFilter.getMeasureCode()));
+            }
+            if (listFilter.getPriceRangeStart() != null && listFilter.getPriceRangeEnd() != null) {
+                predicates.add(builder.between(root.get(AnnouncementOverviewItem_.price), listFilter.getPriceRangeStart(), listFilter.getPriceRangeEnd()));
+            } else if (listFilter.getPriceRangeStart() != null) {
+                predicates.add(builder.ge(root.get(AnnouncementOverviewItem_.price), listFilter.getPriceRangeStart()));
+            } else if (listFilter.getPriceRangeEnd() != null) {
+                predicates.add(builder.le(root.get(AnnouncementOverviewItem_.price), listFilter.getPriceRangeEnd()));
+            }
+            if (StringUtils.isNotEmpty(listFilter.getCurrencySign())) {
+                predicates.add(builder.equal(root.get(AnnouncementOverviewItem_.currencySign), listFilter.getCurrencySign()));
+            }
             if (listFilter.getModerationStatusId() != null) {
                 predicates.add(builder.equal(root.get(AnnouncementOverviewItem_.moderationStatusId), listFilter.getModerationStatusId()));
             }

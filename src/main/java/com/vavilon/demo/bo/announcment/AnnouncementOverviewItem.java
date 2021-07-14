@@ -23,4 +23,12 @@ public class AnnouncementOverviewItem {
     private String text;
     @Column(name = "moderationstatusid")
     private Long moderationStatusId;
+    @Column(name = "price")
+    private Double price;
+    @Column(name = "currencysign")
+    private String currencySign;
+    @Column(name = "measurecode")
+    private String measureCode;
+    @Column(name = "measure")
+    private String measure;
 }
