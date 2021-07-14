@@ -22,15 +22,13 @@ public class AnnouncementRepositoryImpl extends BaseRepository implements Announ
     @Override
     public SearchResult<AnnouncementOverviewItem> listAnnouncements(AnnouncementListFilter listFilter) {
         return resolvePredicates(AnnouncementOverviewItem.class, listFilter, (root, builder) -> {
-            final List<Predicate> predicates = new ArrayList<>(12);
+            final List<Predicate> predicates = new ArrayList<>(2);
             if (StringUtils.isNotEmpty(listFilter.getContent())) {
-                for (String keyword : listFilter.getContent().split(" ")) {
-                    keyword = "%" + keyword.toLowerCase() + "%";
-                    predicates.add(builder.or(
-                            builder.like(builder.lower(root.get(AnnouncementOverviewItem_.productName)), keyword),
-                            builder.like(builder.lower(root.get(AnnouncementOverviewItem_.text)), keyword)
-                    ));
-                }
+                final String searchText = "%" + listFilter.getContent().toLowerCase() + "%";
+                predicates.add(builder.or(
+                        builder.like(builder.lower(root.get(AnnouncementOverviewItem_.productName)), searchText),
+                        builder.like(builder.lower(root.get(AnnouncementOverviewItem_.text)), searchText)
+                ));
             }
             if (listFilter.getModerationStatusId() != null) {
                 predicates.add(builder.equal(root.get(AnnouncementOverviewItem_.moderationStatusId), listFilter.getModerationStatusId()));
