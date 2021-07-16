@@ -8,6 +8,6 @@ public class CommonUtils {
         final int dotIndex = originalFilename.lastIndexOf(".");
         final String justName = originalFilename.substring(0, dotIndex);
         final String extension = originalFilename.substring(dotIndex);
-        return justName + "_" + CalendarUtil.formatDateTime(new Date()) + extension;
+        return justName + "_" + CalendarUtil.formatDateTimeWithMileSeconds(new Date()) + extension;
     }
 }

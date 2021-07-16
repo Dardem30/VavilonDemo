@@ -10,4 +10,5 @@ import java.util.List;
 public interface ProductRepositoryExtension {
     SearchResult<ProductOverviewItem> listProducts(ProductListFilter listFilter);
     List<ProductCategory> productCategories();
+    void resetMainPhotoToTheProduct(Long productId);
 }

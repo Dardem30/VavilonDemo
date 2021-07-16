@@ -35,22 +35,27 @@ public class ProductController extends CommonController {
             writeResponseAsJSON(new ResponseForm<>("Failed to save product", false), response, null);
         }
     }
+
     @PostMapping(path = "/uploadProductAttachment")
-    public void uploadProductAttachment(@RequestPart("inputFile") final MultipartFile inputFile,
-                                        @RequestParam(required = false) final Long productId,
+    public void uploadProductAttachment(@RequestPart("inputFiles") final MultipartFile[] inputFiles,
+                                        @RequestParam(required = true) final Long productId,
+                                        @RequestParam(required = false) Long indexOfMainPhoto,
                                         final HttpServletResponse response) {
         try {
-            if (!inputFile.isEmpty()) {
-                productService.uploadProductAttachment(inputFile, productId);
-                writeResponseAsJSON(new ResponseForm<>("The file is uploaded successfully", true), response, null);
-            } else {
-                writeResponseAsJSON(new ResponseForm<>("The file is empty", false), response, null);
+            if (indexOfMainPhoto == null) {
+                indexOfMainPhoto = -1L;
             }
+            for (int index = 0; index < inputFiles.length; index++) {
+                final MultipartFile inputFile = inputFiles[index];
+                productService.uploadProductAttachment(inputFile, productId, index == indexOfMainPhoto);
+            }
+            writeResponseAsJSON(new ResponseForm<>("The files are uploaded successfully", true), response, null);
         } catch (final Exception e) {
-            logger.error("Failed to upload the file for product: " + productId, e);
-            writeResponseAsJSON(new ResponseForm<>("Failed to upload the file", false), response, null);
+            logger.error("Failed to upload the files for product: " + productId, e);
+            writeResponseAsJSON(new ResponseForm<>("Failed to upload the files", false), response, null);
         }
     }
+
     @PostMapping(path = "/listProducts")
     public void listProduct(@RequestBody final ProductListFilter listFilter, final HttpServletResponse response) {
         try {
@@ -64,6 +69,7 @@ public class ProductController extends CommonController {
             writeResponseAsJSON(new ResponseForm<>("Failed to search product", false), response, null);
         }
     }
+
     @GetMapping(path = "/productCategories")
     public @ResponseBody
     List<ProductCategory> productCategories() {
@@ -71,7 +77,8 @@ public class ProductController extends CommonController {
     }
 
     @GetMapping(path = "/getUserProducts")
-    public @ResponseBody List<Product> getUserProducts() {
+    public @ResponseBody
+    List<Product> getUserProducts() {
         final AppUser user = User.getCurrentLoggedInUser();
         return user == null ? new ArrayList<>() : productService.getUserProducts(user.getUserId());
     }

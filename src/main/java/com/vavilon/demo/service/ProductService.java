@@ -45,11 +45,15 @@ public class ProductService {
     }
 
     @Transactional
-    public void uploadProductAttachment(final MultipartFile inputFile, final Long productId) throws Exception {
+    public void uploadProductAttachment(final MultipartFile inputFile, final Long productId, final boolean mainPhoto) throws Exception {
         final String fileId = googleDriveService.uploadFile(inputFile, CommonUtils.addTimestampToFileName(inputFile.getOriginalFilename()));
         final Attachment attachment = new Attachment();
         attachment.setFileId(fileId);
         attachment.setProductId(productId);
+        if (mainPhoto) {
+            attachment.setMain(true);
+            productRepository.resetMainPhotoToTheProduct(productId);
+        }
         utilityService.mergeObject(attachment);
     }
 
