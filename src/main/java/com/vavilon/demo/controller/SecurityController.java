@@ -1,10 +1,10 @@
 package com.vavilon.demo.controller;
 
-import com.vavilon.demo.bo.user.AppUser;
 import com.vavilon.demo.bo.PasswordResetToken;
 import com.vavilon.demo.bo.bean.ActivateUserForm;
 import com.vavilon.demo.bo.bean.ResetPasswordForm;
 import com.vavilon.demo.bo.bean.ResponseForm;
+import com.vavilon.demo.bo.user.AppUser;
 import com.vavilon.demo.service.UserService;
 import com.vavilon.demo.service.security.User;
 import lombok.AllArgsConstructor;

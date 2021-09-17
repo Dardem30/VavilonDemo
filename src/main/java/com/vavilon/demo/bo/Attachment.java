@@ -1,6 +1,7 @@
 package com.vavilon.demo.bo;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 
@@ -18,5 +19,6 @@ public class Attachment {
     private boolean main;
     @Column(name = "productid")
     private Long productId;
-
+    @Transient
+    private MultipartFile file;
 }

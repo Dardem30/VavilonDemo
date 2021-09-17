@@ -1,5 +1,6 @@
 package com.vavilon.demo.da.impl;
 
+import com.vavilon.demo.bo.Attachment;
 import com.vavilon.demo.bo.product.ProductCategory;
 import com.vavilon.demo.bo.product.ProductOverviewItem;
 import com.vavilon.demo.bo.product.ProductOverviewItem_;
@@ -20,10 +21,13 @@ public class ProductRepositoryImpl extends BaseRepository implements ProductRepo
 
     @Override
     public SearchResult<ProductOverviewItem> listProducts(ProductListFilter listFilter) {
-        return resolvePredicates(ProductOverviewItem.class, listFilter, (root, builder) -> {
-            final List<Predicate> predicates = new ArrayList<>(1);
+        return resolvePredicates(ProductOverviewItem.class, listFilter, (root, builder, parameters) -> {
+            final List<Predicate> predicates = new ArrayList<>(2);
             if (listFilter.getProductCategoryId() != null) {
                predicates.add(builder.equal(root.get(ProductOverviewItem_.categoryId), listFilter.getProductCategoryId()));
+            }
+            if (listFilter.getUserId() != null) {
+                predicates.add(builder.equal(root.get(ProductOverviewItem_.userId), listFilter.getUserId()));
             }
             return predicates;
         });
@@ -38,6 +42,20 @@ public class ProductRepositoryImpl extends BaseRepository implements ProductRepo
     public void resetMainPhotoToTheProduct(final Long productId) {
         entityManager.createQuery("UPDATE Attachment SET main = false WHERE productId=:productId")
                 .setParameter("productId", productId)
+                .executeUpdate();
+    }
+
+    @Override
+    public List<Attachment> readProductAttachments(final Long productId) {
+        return entityManager.createQuery("SELECT a FROM Attachment a WHERE a.productId =:productId")
+                .setParameter("productId", productId)
+                .getResultList();
+    }
+
+    @Override
+    public void setAttachmentAsMainImage(final Long attachmentId) {
+        entityManager.createQuery("UPDATE Attachment SET main = true WHERE attachmentId=:attachmentId")
+                .setParameter("attachmentId", attachmentId)
                 .executeUpdate();
     }
 }

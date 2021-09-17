@@ -4,6 +4,7 @@ package com.vavilon.demo.service;
 import com.vavilon.demo.bo.bean.ResponseForm;
 import com.vavilon.demo.bo.user.Contact;
 import com.vavilon.demo.da.ContactRepository;
+import com.vavilon.demo.service.security.User;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +18,7 @@ public class ContactService {
 
     @Transactional
     public ResponseForm<Contact> saveContact(final Contact contact) {
+        contact.setUserId(User.get().getAppUser().getUserId());
         contactRepository.save(contact);
         return new ResponseForm<>("Contact is successfully saved", true, contact);
     }

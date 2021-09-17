@@ -7,5 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProductListFilter extends ListFilter {
+    private Long userId;
     private Long productCategoryId;
 }

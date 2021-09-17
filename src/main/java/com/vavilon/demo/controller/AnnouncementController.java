@@ -25,8 +25,6 @@ public class AnnouncementController extends CommonController {
             final ResponseForm<Announcement> form = announcementService.saveAnnouncement(announcement);
             writeResponseAsJSON(form, response, (content, savedAnnouncement) -> {
                 content.put("announcementId", savedAnnouncement.getAnnouncementId());
-                content.put("productId", savedAnnouncement.getProduct().getProductId());
-                content.put("contactId", savedAnnouncement.getContact().getContactId());
             });
         } catch (final Exception e) {
             logger.error("Failed to save announcement", e);
@@ -52,7 +50,6 @@ public class AnnouncementController extends CommonController {
         return readAll(Measure.class);
     }
 
-
     @PostMapping(path = "/listAnnouncements")
     public void listAnnouncements(@RequestBody final AnnouncementListFilter listFilter, final HttpServletResponse response) {
         try {
@@ -66,9 +63,26 @@ public class AnnouncementController extends CommonController {
             writeResponseAsJSON(new ResponseForm<>("Failed to search announcements", false), response, null);
         }
     }
+    @PostMapping(path = "/listAnnouncementsForUser")
+    public void listAnnouncementsForUser(@RequestBody final AnnouncementListFilter listFilter, final HttpServletResponse response) {
+        try {
+            final ResponseForm<SearchResult<AnnouncementOverviewItem>> form = announcementService.listAnnouncementsForUser(listFilter);
+            writeResponseAsJSON(form, response, (content, result) -> {
+                content.put("result", result.getResult());
+                content.put("total", result.getTotalNumberFound());
+            });
+        } catch (final Exception e) {
+            logger.error("Failed to search announcements", e);
+            writeResponseAsJSON(new ResponseForm<>("Failed to search announcements", false), response, null);
+        }
+    }
     @GetMapping(path = "/read")
     public @ResponseBody Announcement read(@RequestParam final Long announcementId) {
         return announcementService.read(announcementId);
+    }
+    @GetMapping(path = "/gallery")
+    public @ResponseBody List<String> gallery(@RequestParam final Long announcementId) {
+        return announcementService.gallery(announcementId);
     }
     @PostMapping(path = "/updateModerationStatus")
     public void updateModerationStatus(@RequestBody final ModerationForm moderationForm) {

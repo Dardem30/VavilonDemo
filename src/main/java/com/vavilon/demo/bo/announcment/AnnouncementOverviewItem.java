@@ -15,6 +15,8 @@ public class AnnouncementOverviewItem {
     @Id
     @Column(name = "announcementid")
     private Long announcementId;
+    @Column(name = "userid")
+    private Long userId;
     @Column(name = "image")
     private String image;
     @Column(name = "productname")
@@ -31,4 +33,8 @@ public class AnnouncementOverviewItem {
     private String measureCode;
     @Column(name = "measure")
     private String measure;
+    @Column(name = "moderationstatusname")
+    private String moderationStatusName;
+    @Column(name = "username")
+    private String userName;
 }

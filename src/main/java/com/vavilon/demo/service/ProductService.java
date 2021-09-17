@@ -35,6 +35,7 @@ public class ProductService {
 
     @Transactional(readOnly = true)
     public ResponseForm<SearchResult<ProductOverviewItem>> listProducts(final ProductListFilter listFilter) {
+        listFilter.setUserId(User.get().getAppUser().getUserId());
         final SearchResult<ProductOverviewItem> result = productRepository.listProducts(listFilter);
         return new ResponseForm<>("Success", true, result);
     }
@@ -60,5 +61,25 @@ public class ProductService {
     @Transactional(readOnly = true)
     public List<Product> getUserProducts(final Long userId) {
         return productRepository.findAllByUserId(userId);
+    }
+
+    @Transactional(readOnly = true)
+    public Product readProduct(final Long productId) {
+        return productRepository.findById(productId).get();
+    }
+
+    @Transactional(readOnly = true)
+    public List<Attachment> readProductAttachments(final Long productId) {
+        return productRepository.readProductAttachments(productId);
+    }
+
+    public void deleteAttachmentFile(final Attachment attachment) throws Exception {
+        googleDriveService.deleteFile(attachment.getFileId());
+    }
+
+    @Transactional
+    public void updateMainPhotoForProduct(final Long productId, final Long attachmentId) {
+        productRepository.resetMainPhotoToTheProduct(productId);
+        productRepository.setAttachmentAsMainImage(attachmentId);
     }
 }

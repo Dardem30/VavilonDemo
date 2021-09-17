@@ -386,7 +386,7 @@ CREATE TABLE announcement
 (
     announcementId     serial NOT NULL,
     userClientId       integer NOT NULL,
-    address            jsonb NOT NULL,
+    address            jsonb NULL,
     contactId          integer NOT NULL,
     announcementTypeId integer NOT NULL,
     productId          integer NOT NULL,

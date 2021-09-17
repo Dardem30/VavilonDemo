@@ -29,4 +29,14 @@ public class UtilityService {
     public <T> List<T> readAll(final Class<T> clazz) {
         return utilityDao.readAll(clazz);
     }
+
+    @Transactional(readOnly = true)
+    public <T> T readObject(final Class<T> clazz, final Long id) {
+        return utilityDao.readObject(clazz, id);
+    }
+
+    @Transactional
+    public <T> void bulkDelete(final Class<T> clazz, final List<Long> ids, final String idField) {
+        utilityDao.bulkDelete(clazz, ids, idField);
+    }
 }

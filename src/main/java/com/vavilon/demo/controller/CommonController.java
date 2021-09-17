@@ -17,7 +17,7 @@ import java.util.function.BiConsumer;
 
 public class CommonController {
     @Autowired
-    private ObjectMapper objectMapper;
+    ObjectMapper objectMapper;
     @Autowired
     private UtilityService utilityService;
     protected final Logger logger = LoggerFactory.getLogger(CommonController.class);
@@ -42,5 +42,12 @@ public class CommonController {
     }
     protected <T> List<T> readAll(final Class<T> clazz) {
         return utilityService.readAll(clazz);
+    }
+
+    protected <T> T readObject(final Class<T> clazz, final Long id) {
+        return utilityService.readObject(clazz, id);
+    }
+    protected <T> void bulkDelete(final Class<T> clazz, final List<Long> ids, final String idField) {
+        utilityService.bulkDelete(clazz, ids, idField);
     }
 }

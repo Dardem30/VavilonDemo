@@ -68,4 +68,7 @@ public class GoogleDriveService {
             return result.getId();
         }
     }
+    public void deleteFile(final String fileId) throws Exception {
+        drive.files().delete(fileId).execute();
+    }
 }

@@ -37,4 +37,14 @@ public class UtilityDaoImpl implements UtilityDao {
     public <T> List<T> readAll(final Class<T> clazz) {
         return entityManager.createQuery("FROM " + clazz.getSimpleName(), clazz).getResultList();
     }
+
+    @Override
+    public <T> T readObject(final Class<T> clazz, final Long id) {
+        return entityManager.find(clazz, id);
+    }
+
+    @Override
+    public <T> void bulkDelete(final Class<T> clazz, final List<Long> ids, final String idField) {
+        entityManager.createQuery("DELETE FROM " + clazz.getSimpleName() + " WHERE " + idField + " IN(:ids)").setParameter("ids", ids).executeUpdate();
+    }
 }

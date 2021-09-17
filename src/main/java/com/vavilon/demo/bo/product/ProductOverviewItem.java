@@ -1,5 +1,6 @@
 package com.vavilon.demo.bo.product;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -22,4 +23,9 @@ public class ProductOverviewItem {
     private String category;
     @Column(name = "categoryid")
     private Long categoryId;
+    @Column(name = "userid")
+    @JsonIgnore
+    private Long userId;
+    @Column(name = "image")
+    private String image;
 }

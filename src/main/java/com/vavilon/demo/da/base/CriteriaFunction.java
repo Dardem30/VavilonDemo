@@ -7,5 +7,5 @@ import java.util.List;
 
 @FunctionalInterface
 public interface CriteriaFunction<T> {
-    List<Predicate> apply(Root<T> root, CriteriaBuilder builder);
+    List<Predicate> apply(Root<T> root, CriteriaBuilder builder, List<Parameter> parameters);
 }

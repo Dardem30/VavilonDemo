@@ -1,5 +1,7 @@
 package com.vavilon.demo.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.vavilon.demo.bo.Attachment;
 import com.vavilon.demo.bo.bean.ResponseForm;
 import com.vavilon.demo.bo.product.Product;
 import com.vavilon.demo.bo.product.ProductCategory;
@@ -15,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @RestController
@@ -36,12 +39,28 @@ public class ProductController extends CommonController {
         }
     }
 
+    @GetMapping(value = "read")
+    public @ResponseBody
+    Product readProduct(@RequestParam final Long productId) {
+        return productService.readProduct(productId);
+    }
+
+    @GetMapping(value = "readProductAttachments")
+    public @ResponseBody
+    List<Attachment> readProductAttachments(@RequestParam final Long productId) {
+        return productService.readProductAttachments(productId);
+    }
+
     @PostMapping(path = "/uploadProductAttachment")
-    public void uploadProductAttachment(@RequestPart("inputFiles") final MultipartFile[] inputFiles,
+    public void uploadProductAttachment(@RequestPart(value = "inputFiles", required = false) final MultipartFile[] inputFiles,
                                         @RequestParam(required = true) final Long productId,
                                         @RequestParam(required = false) Long indexOfMainPhoto,
                                         final HttpServletResponse response) {
         try {
+            if (inputFiles == null) {
+                writeResponseAsJSON(new ResponseForm<>("The files are uploaded successfully", true), response, null);
+                return;
+            }
             if (indexOfMainPhoto == null) {
                 indexOfMainPhoto = -1L;
             }
@@ -53,6 +72,27 @@ public class ProductController extends CommonController {
         } catch (final Exception e) {
             logger.error("Failed to upload the files for product: " + productId, e);
             writeResponseAsJSON(new ResponseForm<>("Failed to upload the files", false), response, null);
+        }
+    }
+    @GetMapping(value = "/updateMainPhotoForProduct")
+    public void updateMainPhotoForProduct(@RequestParam final Long productId,
+                                          @RequestParam final Long attachmentId) {
+        productService.updateMainPhotoForProduct(productId, attachmentId);
+    }
+    @PostMapping(path = "/deleteProductAttachments")
+    public void deleteProductAttachments(@RequestBody String body) throws Exception {
+        final JsonNode node = objectMapper.readTree(body);
+        if (node != null) {
+            final JsonNode idsNode = node.get("ids");
+            final Iterator<JsonNode> ids = idsNode.elements();
+            final List<Long> toBeDeletedIds = new ArrayList<>();
+            while (ids.hasNext()) {
+                final JsonNode idNode = ids.next();
+                final Long id = idNode.asLong();
+                productService.deleteAttachmentFile(readObject(Attachment.class, id));
+                toBeDeletedIds.add(id);
+            }
+            bulkDelete(Attachment.class, toBeDeletedIds, "attachmentId");
         }
     }
 

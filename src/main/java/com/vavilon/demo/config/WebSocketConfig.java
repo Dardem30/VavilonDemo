@@ -12,13 +12,15 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
-        config.enableSimpleBroker("/topic");
-        config.setApplicationDestinationPrefixes("/app");
+        config.setApplicationDestinationPrefixes("/socket-subscriber")
+                .enableSimpleBroker("/socket-publisher");
     }
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/vavilon-websocket").withSockJS();
+        registry.addEndpoint("/vavilon-websocket")
+                .setAllowedOrigins("http://localhost:4200")
+                .withSockJS();
     }
 
 }

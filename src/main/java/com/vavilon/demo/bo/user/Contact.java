@@ -1,5 +1,6 @@
 package com.vavilon.demo.bo.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ public class Contact {
     @Column(name = "contactid")
     private Long contactId;
     @Column(name = "userid")
+    @JsonIgnore
     private Long userId;
     @Column(name = "name")
     private String name;
