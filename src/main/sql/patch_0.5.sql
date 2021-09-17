@@ -71,6 +71,7 @@ CREATE INDEX ix_coordinates_polygonid ON coordinates
     (
      polygonid
         );
+alter table announcement alter column address drop not null;
 alter table announcement alter column userclientid drop not null;
 alter table announcement DROP column contactId;
 alter table announcement alter column params drop not null;
