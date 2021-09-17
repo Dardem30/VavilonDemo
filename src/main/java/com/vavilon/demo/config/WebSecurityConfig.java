@@ -37,6 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final UserDetailsService userDetailsService;
     private final ObjectMapper objectMapper;
+
     @Bean
     public RequestBodyReaderAuthenticationFilter authenticationFilter() throws Exception {
         RequestBodyReaderAuthenticationFilter authenticationFilter
@@ -47,6 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         authenticationFilter.setAuthenticationFailureHandler(this::loginFailureHandler);
         return authenticationFilter;
     }
+
     private void loginSuccessHandler(
             HttpServletRequest request,
             HttpServletResponse response,
@@ -76,6 +78,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
         objectMapper.writeValue(response.getWriter(), content);
     }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -107,6 +110,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true);
 
     }
+
     private void logoutSuccessHandler(
             HttpServletRequest request,
             HttpServletResponse response,
@@ -129,8 +133,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("https://dardem30.github.io"));
-        configuration.setAllowedMethods(Arrays.asList("GET","POST", "OPTIONS", "DELETE"));
+        configuration.setAllowedOrigins(Arrays.asList("https://localhost:4200"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS", "DELETE"));
         configuration.setAllowCredentials(true);
         configuration.setMaxAge(3600L);
         configuration.setAllowedHeaders(Arrays.asList("Content-Type", "Accept", "X-Requested-With", "remember-me", "Set-cookie"));
