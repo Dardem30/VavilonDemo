@@ -1726,12 +1726,20 @@
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "inputFile",
+							"key": "inputFiles",
 							"type": "file",
-							"src": "/F:/526.jpg"
+							"src": [
+								"/F:/orange.jpg",
+								"/F:/orange_#2.jpg"
+							]
 						},
 						{
 							"key": "productId",
+							"value": "8",
+							"type": "text"
+						},
+						{
+							"key": "indexOfMainPhoto",
 							"value": "1",
 							"type": "text"
 						}
@@ -1761,24 +1769,33 @@
 							"mode": "formdata",
 							"formdata": [
 								{
-									"key": "inputFile",
+									"key": "inputFiles",
 									"type": "file",
-									"src": "/F:/526.jpg"
+									"src": [
+										"/F:/orange.jpg",
+										"/F:/orange_#2.jpg"
+									]
 								},
 								{
 									"key": "productId",
+									"value": "8",
+									"type": "text"
+								},
+								{
+									"key": "indexOfMainPhoto",
 									"value": "1",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8081/product/uploadProductAttachment",
-							"protocol": "http",
+							"raw": "https://vavilon-dev.herokuapp.com/product/uploadProductAttachment",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"vavilon-dev",
+								"herokuapp",
+								"com"
 							],
-							"port": "8081",
 							"path": [
 								"product",
 								"uploadProductAttachment"
@@ -1790,11 +1807,31 @@
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
+							"key": "Server",
+							"value": "Cowboy"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
 							"key": "X-Content-Type-Options",
 							"value": "nosniff"
 						},
 						{
-							"key": "X-XSS-Protection",
+							"key": "X-Xss-Protection",
 							"value": "1; mode=block"
 						},
 						{
@@ -1810,6 +1847,10 @@
 							"value": "0"
 						},
 						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
 							"key": "X-Frame-Options",
 							"value": "DENY"
 						},
@@ -1819,23 +1860,19 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "62"
+							"value": "64"
 						},
 						{
 							"key": "Date",
-							"value": "Sat, 17 Apr 2021 10:29:01 GMT"
+							"value": "Fri, 16 Jul 2021 11:08:39 GMT"
 						},
 						{
-							"key": "Keep-Alive",
-							"value": "timeout=60"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
+							"key": "Via",
+							"value": "1.1 vegur"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"success\": true,\n    \"message\": \"The file is uploaded successfully\"\n}"
+					"body": "{\n    \"success\": true,\n    \"message\": \"The files are uploaded successfully\"\n}"
 				}
 			]
 		},
@@ -2073,7 +2110,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://vavilon-dev.herokuapp.com/contact/getUserContacts?userId=3",
+					"raw": "https://vavilon-dev.herokuapp.com/contact/getUserContacts",
 					"protocol": "https",
 					"host": [
 						"vavilon-dev",
@@ -2083,12 +2120,6 @@
 					"path": [
 						"contact",
 						"getUserContacts"
-					],
-					"query": [
-						{
-							"key": "userId",
-							"value": "3"
-						}
 					]
 				}
 			},
@@ -2099,7 +2130,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/contact/getUserContacts?userId=3",
+							"raw": "http://localhost:8081/contact/getUserContacts",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2108,12 +2139,6 @@
 							"path": [
 								"contact",
 								"getUserContacts"
-							],
-							"query": [
-								{
-									"key": "userId",
-									"value": "3"
-								}
 							]
 						}
 					},
@@ -2521,7 +2546,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"content\": \"dummy test              annoucement            \",\r\n    \"start\": 0,\r\n    \"limit\": 50,\r\n    \"sort\": {\r\n        \"property\": \"productName\",\r\n        \"direction\": \"ASC\"\r\n    }\r\n}",
+					"raw": "{\r\n    \"content\": \"test\",\r\n    \"measureCode\": \"M-1\",\r\n    \"currencySign\": \"EUR\",\r\n    \"priceRangeStart\": 50,\r\n    \"priceRangeEnd\": 150,\r\n    \"start\": 0,\r\n    \"limit\": 50,\r\n    \"sort\": {\r\n        \"property\": \"price\",\r\n        \"direction\": \"DESC\"\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -2550,7 +2575,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"content\": \"dummy test              annoucement            \",\r\n    \"start\": 0,\r\n    \"limit\": 50,\r\n    \"sort\": {\r\n        \"property\": \"productName\",\r\n        \"direction\": \"ASC\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"content\": \"test\",\r\n    \"measureCode\": \"M-1\",\r\n    \"currencySign\": \"EUR\",\r\n    \"priceRangeStart\": 50,\r\n    \"priceRangeEnd\": 150,\r\n    \"start\": 0,\r\n    \"limit\": 50,\r\n    \"sort\": {\r\n        \"property\": \"price\",\r\n        \"direction\": \"DESC\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2576,6 +2601,14 @@
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
+							"key": "Server",
+							"value": "Cowboy"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
 							"key": "Vary",
 							"value": "Origin"
 						},
@@ -2592,7 +2625,132 @@
 							"value": "nosniff"
 						},
 						{
-							"key": "X-XSS-Protection",
+							"key": "X-Xss-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "281"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 14 Jul 2021 10:19:42 GMT"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"result\": [\n        {\n            \"announcementId\": 2,\n            \"image\": \"1aCPZH3DrIbfq9IGe5UVav6UrjYMrC47M\",\n            \"productName\": \"TEST_PRODUCT_#1\",\n            \"text\": \"Dummy annoucement\",\n            \"moderationStatusId\": 2,\n            \"price\": 100,\n            \"currencySign\": \"EUR\",\n            \"measureCode\": \"M-1\",\n            \"measure\": \"100-500kg\"\n        }\n    ],\n    \"total\": 1,\n    \"success\": true,\n    \"message\": \"Success\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Read announcement",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://vavilon-dev.herokuapp.com/announcement/read?announcementId=2",
+					"protocol": "http",
+					"host": [
+						"vavilon-dev",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"announcement",
+						"read"
+					],
+					"query": [
+						{
+							"key": "announcementId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Read announcement",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://vavilon-dev.herokuapp.com/announcement/read?announcementId=2",
+							"protocol": "http",
+							"host": [
+								"vavilon-dev",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"announcement",
+								"read"
+							],
+							"query": [
+								{
+									"key": "announcementId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Cowboy"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Xss-Protection",
 							"value": "1; mode=block"
 						},
 						{
@@ -2613,27 +2771,270 @@
 						},
 						{
 							"key": "Content-Type",
-							"value": "application/json;charset=utf-8"
+							"value": "application/json"
 						},
 						{
-							"key": "Content-Length",
-							"value": "181"
+							"key": "Transfer-Encoding",
+							"value": "chunked"
 						},
 						{
 							"key": "Date",
-							"value": "Mon, 28 Jun 2021 12:09:51 GMT"
+							"value": "Fri, 02 Jul 2021 10:32:15 GMT"
 						},
 						{
-							"key": "Keep-Alive",
-							"value": "timeout=60"
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"announcementId\": 2,\n    \"userClient\": {\n        \"userClientId\": 7,\n        \"clientId\": null,\n        \"userId\": 4,\n        \"userClientType\": {\n            \"userClientTypeId\": 1,\n            \"name\": \"CLIENT\",\n            \"description\": \"partners...\"\n        }\n    },\n    \"address\": {\n        \"city\": \"dummy city #1\",\n        \"country\": \"Dummy country #1\",\n        \"street\": \"dummy street #1\"\n    },\n    \"contact\": {\n        \"contactId\": 10,\n        \"userId\": 4,\n        \"name\": \"Personal email\",\n        \"value\": \"r.lukashenko@mail.ru\",\n        \"contactType\": {\n            \"contactTypeId\": 1,\n            \"name\": \"EMAIL\",\n            \"description\": \"User email\"\n        }\n    },\n    \"announcementType\": {\n        \"announcementTypeId\": 1,\n        \"name\": \"VIP\",\n        \"description\": \"VIP\"\n    },\n    \"product\": {\n        \"productId\": 8,\n        \"name\": \"TEST_PRODUCT_#1\",\n        \"description\": \"TEST_DESCRIPTION\",\n        \"productCategory\": {\n            \"productCategoryId\": 1,\n            \"name\": \"TEST_PRODUCT_CATEGORY_#1\",\n            \"description\": null\n        }\n    },\n    \"measure\": {\n        \"measureCode\": \"M-1\",\n        \"name\": \"100-500kg\",\n        \"description\": null\n    },\n    \"price\": 100,\n    \"currencySign\": \"EUR\",\n    \"text\": \"Dummy annoucement\",\n    \"params\": {\n        \"tags\": \"cheap\"\n    },\n    \"announcementDate\": \"28-06-2021\",\n    \"order\": null,\n    \"moderationStatus\": {\n        \"moderationStatusId\": 1,\n        \"name\": \"TO_BE_REVIEWED\",\n        \"description\": null\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Get userClient types",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://vavilon-dev.herokuapp.com/announcement/getUserClientTypes",
+					"protocol": "https",
+					"host": [
+						"vavilon-dev",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"announcement",
+						"getUserClientTypes"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get userClient types",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://vavilon-dev.herokuapp.com/announcement/getUserClientTypes",
+							"protocol": "https",
+							"host": [
+								"vavilon-dev",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"announcement",
+								"getUserClientTypes"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Cowboy"
 						},
 						{
 							"key": "Connection",
 							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Xss-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 07 Jul 2021 11:37:20 GMT"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"result\": [\n        {\n            \"announcementId\": 2,\n            \"image\": \"1aCPZH3DrIbfq9IGe5UVav6UrjYMrC47M\",\n            \"productName\": \"TEST_PRODUCT_#1\",\n            \"text\": \"Dummy annoucement\"\n        }\n    ],\n    \"total\": 1,\n    \"success\": true,\n    \"message\": \"Success\"\n}"
+					"body": "[\n    {\n        \"userClientTypeId\": 1,\n        \"name\": \"CLIENT\",\n        \"description\": \"partners...\"\n    },\n    {\n        \"userClientTypeId\": 2,\n        \"name\": \"SUPPLIER\",\n        \"description\": \"supplier...\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get moderation statuses",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://vavilon-dev.herokuapp.com/announcement/getModerationStatuses",
+					"protocol": "https",
+					"host": [
+						"vavilon-dev",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"announcement",
+						"getModerationStatuses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all products of the user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://vavilon-dev.herokuapp.com/product/getUserProducts",
+					"protocol": "https",
+					"host": [
+						"vavilon-dev",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"product",
+						"getUserProducts"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get all products of the user",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://vavilon-dev.herokuapp.com/product/getUserProducts",
+							"protocol": "https",
+							"host": [
+								"vavilon-dev",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"product",
+								"getUserProducts"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Cowboy"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Xss-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 07 Jul 2021 11:40:34 GMT"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"productId\": 1,\n        \"name\": \"TEST_PRODUCT\",\n        \"description\": \"TEST_DESCRIPTION\",\n        \"userId\": 4,\n        \"productCategory\": {\n            \"productCategoryId\": 1,\n            \"name\": \"TEST_PRODUCT_CATEGORY_#1\",\n            \"description\": null\n        }\n    },\n    {\n        \"productId\": 8,\n        \"name\": \"TEST_PRODUCT_#1\",\n        \"description\": \"TEST_DESCRIPTION\",\n        \"userId\": 4,\n        \"productCategory\": {\n            \"productCategoryId\": 1,\n            \"name\": \"TEST_PRODUCT_CATEGORY_#1\",\n            \"description\": null\n        }\n    },\n    {\n        \"productId\": 9,\n        \"name\": \"TEST_PRODUCT_#2\",\n        \"description\": \"TEST_DESCRIPTION\",\n        \"userId\": 4,\n        \"productCategory\": {\n            \"productCategoryId\": 1,\n            \"name\": \"TEST_PRODUCT_CATEGORY_#1\",\n            \"description\": null\n        }\n    }\n]"
 				}
 			]
 		}

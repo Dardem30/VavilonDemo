@@ -2,4 +2,4 @@
 
 <p>Use the code below to activate your vavilon account</p><br>
 <p>Code: $code</p><br>
-<p>Activation link: <a href="$url?userId=$userId">link</a></p>
+<p>Activation link: <a href="$url?userId=$userId&activateUser=true">link</a></p>

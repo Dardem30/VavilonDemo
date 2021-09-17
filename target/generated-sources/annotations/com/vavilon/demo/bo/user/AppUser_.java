@@ -1,5 +1,6 @@
 package com.vavilon.demo.bo.user;
 
+import com.vavilon.demo.bo.enums.Role;
 import java.util.Date;
 import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
@@ -12,6 +13,7 @@ public abstract class AppUser_ {
 	public static volatile SingularAttribute<AppUser, String> firstName;
 	public static volatile SingularAttribute<AppUser, String> lastName;
 	public static volatile SingularAttribute<AppUser, String> password;
+	public static volatile SingularAttribute<AppUser, Role> role;
 	public static volatile SingularAttribute<AppUser, Boolean> active;
 	public static volatile SingularAttribute<AppUser, Date> activationCodeDateEnd;
 	public static volatile SingularAttribute<AppUser, String> activationCode;
@@ -22,6 +24,7 @@ public abstract class AppUser_ {
 	public static final String FIRST_NAME = "firstName";
 	public static final String LAST_NAME = "lastName";
 	public static final String PASSWORD = "password";
+	public static final String ROLE = "role";
 	public static final String ACTIVE = "active";
 	public static final String ACTIVATION_CODE_DATE_END = "activationCodeDateEnd";
 	public static final String ACTIVATION_CODE = "activationCode";

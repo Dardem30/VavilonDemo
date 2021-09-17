@@ -8,16 +8,20 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(ProductOverviewItem.class)
 public abstract class ProductOverviewItem_ {
 
+	public static volatile SingularAttribute<ProductOverviewItem, String> image;
 	public static volatile SingularAttribute<ProductOverviewItem, Long> productId;
 	public static volatile SingularAttribute<ProductOverviewItem, String> name;
 	public static volatile SingularAttribute<ProductOverviewItem, String> description;
 	public static volatile SingularAttribute<ProductOverviewItem, String> category;
+	public static volatile SingularAttribute<ProductOverviewItem, Long> userId;
 	public static volatile SingularAttribute<ProductOverviewItem, Long> categoryId;
 
+	public static final String IMAGE = "image";
 	public static final String PRODUCT_ID = "productId";
 	public static final String NAME = "name";
 	public static final String DESCRIPTION = "description";
 	public static final String CATEGORY = "category";
+	public static final String USER_ID = "userId";
 	public static final String CATEGORY_ID = "categoryId";
 
 }
