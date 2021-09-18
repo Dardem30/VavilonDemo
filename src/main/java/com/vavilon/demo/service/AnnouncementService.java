@@ -76,7 +76,9 @@ public class AnnouncementService {
 
     @Transactional
     public void updateModerationStatus(final ModerationForm moderationForm) {
-        announcementRepository.updateModerationStatus(moderationForm);
+        if (Role.ADMIN.equals(User.get().getAppUser().getRole())) {
+            announcementRepository.updateModerationStatus(moderationForm);
+        }
     }
 
     @Transactional(readOnly = true)

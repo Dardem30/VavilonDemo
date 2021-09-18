@@ -71,7 +71,7 @@ public class AnnouncementRepositoryImpl extends BaseRepository implements Announ
 
     @Override
     public void updateModerationStatus(final ModerationForm moderationForm) {
-        entityManager.createQuery("update Announcement set moderationStatus=:moderationStatus WHERE announcementId=:announcementId")
+        entityManager.createQuery("update Announcement set moderationStatus.moderationStatusId=:moderationStatus WHERE announcementId=:announcementId")
                 .setParameter("moderationStatus", moderationForm.getModerationStatusId())
                 .setParameter("announcementId", moderationForm.getAnnouncementId())
                 .executeUpdate();

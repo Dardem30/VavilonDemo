@@ -99,6 +99,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/announcement/getMeasures").permitAll()
                 .antMatchers("/announcement/read").permitAll()
                 .antMatchers("/announcement/gallery").permitAll()
+                .antMatchers("/announcement/getModerationStatuses").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(
