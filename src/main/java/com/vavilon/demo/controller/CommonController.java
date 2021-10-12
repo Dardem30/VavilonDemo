@@ -50,4 +50,7 @@ public class CommonController {
     protected <T> void bulkDelete(final Class<T> clazz, final List<Long> ids, final String idField) {
         utilityService.bulkDelete(clazz, ids, idField);
     }
+    protected void mergeObject(final Object o) {
+        utilityService.mergeObject(o);
+    }
 }

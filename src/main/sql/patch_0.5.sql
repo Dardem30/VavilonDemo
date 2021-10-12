@@ -52,6 +52,7 @@ CREATE TABLE polygon
     polygonid serial       NOT NULL,
     announcementid integer      NOT NULL,
     CONSTRAINT PK_polygonref PRIMARY KEY (polygonid),
+    CONSTRAINT PK_polygonref PRIMARY KEY (polygonid),
     CONSTRAINT FK_announcementid FOREIGN KEY (announcementid) REFERENCES "announcement" (announcementid)
 );
 CREATE INDEX ix_polygon_announcementid ON polygon
@@ -63,6 +64,7 @@ CREATE TABLE coordinates(
     polygonid integer NOT NULL,
     lat decimal not null,
     lng decimal not null,
+    CONSTRAINT PK_coordinates PRIMARY KEY (coordinatesid),
     CONSTRAINT PK_coordinatesref PRIMARY KEY (coordinatesid),
     CONSTRAINT FK_polygonid FOREIGN KEY (polygonid) REFERENCES "polygon" (polygonid) ON DELETE CASCADE
 );

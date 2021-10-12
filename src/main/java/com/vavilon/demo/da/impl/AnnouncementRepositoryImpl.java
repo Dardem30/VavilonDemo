@@ -1,10 +1,9 @@
 package com.vavilon.demo.da.impl;
 
-import com.vavilon.demo.bo.announcment.AnnouncementOverviewItem;
-import com.vavilon.demo.bo.announcment.AnnouncementOverviewItem_;
-import com.vavilon.demo.bo.announcment.Coordinate;
+import com.vavilon.demo.bo.announcment.*;
 import com.vavilon.demo.bo.bean.ModerationForm;
 import com.vavilon.demo.bo.search.AnnouncementListFilter;
+import com.vavilon.demo.bo.search.CommentsListFilter;
 import com.vavilon.demo.bo.search.util.SearchResult;
 import com.vavilon.demo.da.base.BaseRepository;
 import com.vavilon.demo.da.base.Parameter;
@@ -68,6 +67,17 @@ public class AnnouncementRepositoryImpl extends BaseRepository implements Announ
             return predicates;
         });
     }
+    @Override
+    public SearchResult<CommentOverviewItem> listComments(final CommentsListFilter listFilter) {
+        return resolvePredicates(CommentOverviewItem.class, listFilter, (root, builder, parameters) -> {
+            final List<Predicate> predicates = new ArrayList<>(2);
+            if (listFilter.getAnnouncementId() != null) {
+                predicates.add(builder.equal(root.get(CommentOverviewItem_.announcementId), listFilter.getAnnouncementId()));
+            }
+            predicates.add(builder.isNull(root.get(CommentOverviewItem_.rootCommentId)));
+            return predicates;
+        });
+    }
 
     @Override
     public void updateModerationStatus(final ModerationForm moderationForm) {
@@ -82,5 +92,37 @@ public class AnnouncementRepositoryImpl extends BaseRepository implements Announ
         return entityManager.createQuery("SELECT a.fileId FROM Attachment a WHERE a.productId = (SELECT product.productId FROM Announcement WHERE announcementId=:announcementId)", String.class)
                 .setParameter("announcementId", announcementId)
                 .getResultList();
+    }
+
+    @Override
+    public Double rateAnnouncement(final Double rate, final Long announcementId, final Long userId) {
+        final List<AnnouncementRateHistory> announcementRateHistoryList = entityManager.createQuery("SELECT r FROM AnnouncementRateHistory r WHERE r.announcementId=:announcementId", AnnouncementRateHistory.class)
+                .setParameter("announcementId", announcementId)
+                .getResultList();
+        boolean createNewRecord = true;
+        int count = 0;
+        double sum = 0;
+        for (final AnnouncementRateHistory announcementRateHistory : announcementRateHistoryList) {
+            if (announcementRateHistory.getUserId().equals(userId)) {
+                createNewRecord = false;
+            }
+            count++;
+            sum += announcementRateHistory.getRate();
+        }
+        if (createNewRecord) {
+            final AnnouncementRateHistory announcementRateHistory = new AnnouncementRateHistory();
+            announcementRateHistory.setAnnouncementId(announcementId);
+            announcementRateHistory.setUserId(userId);
+            announcementRateHistory.setRate(rate);
+            count++;
+            sum += rate;
+            entityManager.merge(announcementRateHistory);
+        }
+        final Double result = sum / count;
+        entityManager.createQuery("UPDATE Announcement SET rating=:rate WHERE announcementId=:announcementId")
+                .setParameter("announcementId", announcementId)
+                .setParameter("rate", result)
+                .executeUpdate();
+        return result;
     }
 }

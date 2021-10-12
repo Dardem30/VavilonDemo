@@ -12,6 +12,7 @@ SELECT a.announcementid
      , a.userid
      , ms.name                        AS moderationstatusname
      , CONCAT(u.firstname, ' ', u.lastname) AS username
+     , a.rating
 FROM announcement a
          INNER JOIN product p on a.productid = p.productid
          INNER JOIN moderationstatus ms ON ms.moderationstatusid = a.moderationstatusid

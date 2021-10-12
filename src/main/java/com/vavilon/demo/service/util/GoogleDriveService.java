@@ -68,6 +68,17 @@ public class GoogleDriveService {
             return result.getId();
         }
     }
+    public String uploadProfileImage(final MultipartFile file, final String fileName) throws Exception {
+        try (final InputStream inputStream = file.getInputStream()) {
+            final com.google.api.services.drive.model.File fileMetaData = new com.google.api.services.drive.model.File();
+            fileMetaData.setName(fileName);
+            fileMetaData.setParents(Collections.singletonList(contextHolder.getFolderProfileImages()));
+            final com.google.api.services.drive.model.File result = drive.files().create(fileMetaData,
+                    new InputStreamContent(Files.probeContentType(new File(fileName).toPath()), inputStream)).execute();
+            log.info("Successfully upload file " + fileName + " to Google Drive");
+            return result.getId();
+        }
+    }
     public void deleteFile(final String fileId) throws Exception {
         drive.files().delete(fileId).execute();
     }

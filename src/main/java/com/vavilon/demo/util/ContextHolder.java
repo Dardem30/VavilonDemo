@@ -29,5 +29,7 @@ public class ContextHolder {
     private String activateUserUrl;
     @Value("${folder.product_images}")
     private String folderProductImages;
+    @Value("${folder.profile_images}")
+    private String folderProfileImages;
 
 }

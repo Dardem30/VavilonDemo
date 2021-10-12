@@ -5,17 +5,18 @@ import com.vavilon.demo.bo.bean.ActivateUserForm;
 import com.vavilon.demo.bo.bean.ResetPasswordForm;
 import com.vavilon.demo.bo.bean.ResponseForm;
 import com.vavilon.demo.bo.user.AppUser;
+import com.vavilon.demo.bo.user.ProfileInfo;
 import com.vavilon.demo.service.UserService;
 import com.vavilon.demo.service.security.User;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @AllArgsConstructor
@@ -25,7 +26,7 @@ public class SecurityController extends CommonController {
     @GetMapping(path = "/home")
     public ResponseEntity<AppUser> home() {
         try {
-            return ResponseEntity.ok(userService.getUser(User.get().getAppUser().getUserId()));
+            return ResponseEntity.ok(User.get().getAppUser());
         } catch (final Exception e) {
             return new ResponseEntity("Username and/or password is incorrect", HttpStatus.FORBIDDEN);
         }
@@ -45,6 +46,7 @@ public class SecurityController extends CommonController {
             writeResponseAsJSON(new ResponseForm<>("Failed to save user", false), response, null);
         }
     }
+
     @PostMapping(path = "/activateUser")
     public void activateUser(@RequestBody final ActivateUserForm activateUserForm, final HttpServletResponse response) {
         try {
@@ -55,6 +57,7 @@ public class SecurityController extends CommonController {
             writeResponseAsJSON(new ResponseForm<>("Failed to activate user", false), response, null);
         }
     }
+
     @PostMapping(path = "/sendResetPasswordEmail")
     public void sendResetPasswordEmail(@RequestBody String email, final HttpServletResponse response) {
         try {
@@ -71,6 +74,7 @@ public class SecurityController extends CommonController {
             });
         }
     }
+
     @PostMapping(path = "/resetPassword")
     public void resetPassword(@RequestBody ResetPasswordForm resetPasswordForm, final HttpServletResponse response) {
         try {
@@ -84,4 +88,23 @@ public class SecurityController extends CommonController {
         }
     }
 
+    @GetMapping(path = "/readProfile")
+    public @ResponseBody
+    ProfileInfo readProfile(@RequestParam final Long userId) {
+        return readObject(ProfileInfo.class, userId);
+    }
+
+    @PostMapping(path = "/updateProfileInfo")
+    public void updateProfileInfo(@RequestParam final Long userId, @RequestBody final String info) {
+        userService.updateProfileInfo(userId, info);
+    }
+
+    @PostMapping(path = "/uploadPhoto")
+    public @ResponseBody
+    Map<String, Object> uploadProductAttachment(@RequestPart final MultipartFile inputFile) throws Exception {
+        final Map<String, Object> response = new HashMap<>(2);
+        response.put("fileId", userService.uploadPhoto(inputFile));
+        response.put("success", true);
+        return response;
+    }
 }

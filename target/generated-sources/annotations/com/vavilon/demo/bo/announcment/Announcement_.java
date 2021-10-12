@@ -23,6 +23,7 @@ public abstract class Announcement_ {
 	public static volatile SingularAttribute<Announcement, String> currencySign;
 	public static volatile SetAttribute<Announcement, Polygon> polygons;
 	public static volatile SingularAttribute<Announcement, Date> announcementDate;
+	public static volatile SingularAttribute<Announcement, Double> rating;
 	public static volatile SingularAttribute<Announcement, ModerationStatus> moderationStatus;
 	public static volatile SingularAttribute<Announcement, Params> params;
 	public static volatile SingularAttribute<Announcement, Measure> measure;
@@ -40,6 +41,7 @@ public abstract class Announcement_ {
 	public static final String CURRENCY_SIGN = "currencySign";
 	public static final String POLYGONS = "polygons";
 	public static final String ANNOUNCEMENT_DATE = "announcementDate";
+	public static final String RATING = "rating";
 	public static final String MODERATION_STATUS = "moderationStatus";
 	public static final String PARAMS = "params";
 	public static final String MEASURE = "measure";

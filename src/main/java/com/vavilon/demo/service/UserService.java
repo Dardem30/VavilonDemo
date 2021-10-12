@@ -8,6 +8,9 @@ import com.vavilon.demo.bo.enums.Role;
 import com.vavilon.demo.bo.user.AppUser;
 import com.vavilon.demo.da.AppUserRepository;
 import com.vavilon.demo.da.PasswordResetTokenRepository;
+import com.vavilon.demo.service.security.User;
+import com.vavilon.demo.service.util.GoogleDriveService;
+import com.vavilon.demo.util.CommonUtils;
 import com.vavilon.demo.util.ContextHolder;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -15,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.*;
 
@@ -28,6 +32,7 @@ public class UserService {
     private final PasswordResetTokenRepository passwordResetTokenRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final ContextHolder contextHolder;
+    private final GoogleDriveService driveService;
 
     @Transactional(readOnly = true)
     public AppUser findByLogin(String login) {
@@ -114,5 +119,22 @@ public class UserService {
             return new ResponseForm<>("The token is expired", false, passwordResetTokenEntry);
         }
         return new ResponseForm<>("Couldn't find the token with userId[" + resetPasswordForm.getUserId() + "]", false);
+    }
+
+    @Transactional
+    public void updateProfileInfo(final Long userId, final String info) {
+        userRepository.updateProfileInfo(userId, info);
+    }
+
+    @Transactional
+    public String uploadPhoto(final MultipartFile inputFile) throws Exception {
+        final AppUser user = User.get().getAppUser();
+        final String uploadedPhotoId = driveService.uploadProfileImage(inputFile, CommonUtils.addTimestampToFileName(inputFile.getOriginalFilename()));
+        if (user.getPhoto() != null) {
+            driveService.deleteFile(user.getPhoto());
+        }
+        user.setPhoto(uploadedPhotoId);
+        userRepository.save(user);
+        return uploadedPhotoId;
     }
 }

@@ -100,6 +100,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/announcement/read").permitAll()
                 .antMatchers("/announcement/gallery").permitAll()
                 .antMatchers("/announcement/getModerationStatuses").permitAll()
+                .antMatchers("/announcement/listComments").permitAll()
+                .antMatchers("/readProfile").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(
@@ -134,7 +136,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("https://dardem30.github.io"));
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS", "DELETE"));
         configuration.setAllowCredentials(true);
         configuration.setMaxAge(3600L);

@@ -37,4 +37,6 @@ public class AnnouncementOverviewItem {
     private String moderationStatusName;
     @Column(name = "username")
     private String userName;
+    @Column(name = "rating")
+    private Double rating;
 }

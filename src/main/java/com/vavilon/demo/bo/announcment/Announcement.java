@@ -73,6 +73,8 @@ public class Announcement {
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "moderationstatusid")
     private ModerationStatus moderationStatus;
+    @Column(name = "rating")
+    private Double rating;
 
     public void setPolygons(Set<Polygon> polygons) {
         if (polygons != null) {

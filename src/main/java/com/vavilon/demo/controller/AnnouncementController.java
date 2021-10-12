@@ -1,10 +1,12 @@
 package com.vavilon.demo.controller;
 
 import com.vavilon.demo.bo.announcment.*;
+import com.vavilon.demo.bo.bean.AnnouncementRateForm;
 import com.vavilon.demo.bo.bean.ModerationForm;
 import com.vavilon.demo.bo.bean.ResponseForm;
 import com.vavilon.demo.bo.client.UserClientType;
 import com.vavilon.demo.bo.search.AnnouncementListFilter;
+import com.vavilon.demo.bo.search.CommentsListFilter;
 import com.vavilon.demo.bo.search.util.SearchResult;
 import com.vavilon.demo.service.AnnouncementService;
 import lombok.AllArgsConstructor;
@@ -93,5 +95,26 @@ public class AnnouncementController extends CommonController {
     public @ResponseBody
     List<ModerationStatus> getModerationStatuses() {
         return readAll(ModerationStatus.class);
+    }
+    @PostMapping(path = "/rateAnnouncement")
+    public @ResponseBody Double rateAnnouncement(@RequestBody final AnnouncementRateForm announcementRateForm) {
+        return announcementService.rateAnnouncement(announcementRateForm);
+    }
+    @PostMapping(path = "/createComment")
+    public @ResponseBody void createComment(@RequestBody final Comment comment) {
+        mergeObject(comment);
+    }
+    @PostMapping(path = "/listComments")
+    public void listComments(@RequestBody final CommentsListFilter listFilter, final HttpServletResponse response) {
+        try {
+            final ResponseForm<SearchResult<CommentOverviewItem>> form = announcementService.listComments(listFilter);
+            writeResponseAsJSON(form, response, (content, result) -> {
+                content.put("result", result.getResult());
+                content.put("total", result.getTotalNumberFound());
+            });
+        } catch (final Exception e) {
+            logger.error("Failed to search comments", e);
+            writeResponseAsJSON(new ResponseForm<>("Failed to search comments", false), response, null);
+        }
     }
 }

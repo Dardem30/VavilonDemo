@@ -1,14 +1,13 @@
 package com.vavilon.demo.service;
 
-import com.vavilon.demo.bo.announcment.Announcement;
-import com.vavilon.demo.bo.announcment.AnnouncementOverviewItem;
-import com.vavilon.demo.bo.announcment.ModerationStatus;
-import com.vavilon.demo.bo.announcment.Polygon;
+import com.vavilon.demo.bo.announcment.*;
+import com.vavilon.demo.bo.bean.AnnouncementRateForm;
 import com.vavilon.demo.bo.bean.ModerationForm;
 import com.vavilon.demo.bo.bean.ResponseForm;
 import com.vavilon.demo.bo.enums.Role;
 import com.vavilon.demo.bo.product.Product;
 import com.vavilon.demo.bo.search.AnnouncementListFilter;
+import com.vavilon.demo.bo.search.CommentsListFilter;
 import com.vavilon.demo.bo.search.util.SearchResult;
 import com.vavilon.demo.bo.user.AppUser;
 import com.vavilon.demo.bo.user.Contact;
@@ -64,7 +63,7 @@ public class AnnouncementService {
 
     @Transactional(readOnly = false)
     public ResponseForm<SearchResult<AnnouncementOverviewItem>> listAnnouncementsForUser(final AnnouncementListFilter listFilter) {
-        listFilter.setUserId(User.get().getAppUser().getUserId());
+      //  listFilter.setUserId(User.get().getAppUser().getUserId());
         final SearchResult<AnnouncementOverviewItem> result = announcementRepository.listAnnouncements(listFilter);
         return new ResponseForm<>("Success", true, result);
     }
@@ -84,5 +83,15 @@ public class AnnouncementService {
     @Transactional(readOnly = true)
     public List<String> gallery(final Long announcementId) {
         return announcementRepository.gallery(announcementId);
+    }
+
+    @Transactional
+    public Double rateAnnouncement(final AnnouncementRateForm announcementRateForm) {
+        return announcementRepository.rateAnnouncement(announcementRateForm.getRate(), announcementRateForm.getAnnouncementId(), User.get().getAppUser().getUserId());
+    }
+
+    @Transactional(readOnly = true)
+    public ResponseForm<SearchResult<CommentOverviewItem>> listComments(final CommentsListFilter listFilter) {
+        return new ResponseForm<>("Success", true, announcementRepository.listComments(listFilter));
     }
 }

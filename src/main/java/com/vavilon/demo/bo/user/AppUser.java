@@ -38,6 +38,10 @@ public class AppUser {
     @Column(name = "`role`")
     @Enumerated(EnumType.STRING)
     private Role role;
+    @Column(name = "info")
+    private String info;
+    @Column(name = "photo")
+    private String photo;
 
     public Recipient toRecipient() {
         final Recipient recipient = new Recipient();

@@ -19,7 +19,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/vavilon-websocket")
-                .setAllowedOrigins("https://dardem30.github.io")
+                .setAllowedOrigins("http://localhost:4200")
                 .withSockJS();
     }
 
