@@ -8,6 +8,7 @@ import com.vavilon.demo.bo.search.util.SearchResult;
 import com.vavilon.demo.da.base.BaseRepository;
 import com.vavilon.demo.da.base.Parameter;
 import com.vavilon.demo.da.extension.AnnouncementRepositoryExtension;
+import com.vavilon.demo.util.IConstants;
 import org.apache.commons.lang.StringUtils;
 
 import javax.persistence.EntityManager;
@@ -24,7 +25,7 @@ public class AnnouncementRepositoryImpl extends BaseRepository implements Announ
     @Override
     public SearchResult<AnnouncementOverviewItem> listAnnouncements(final AnnouncementListFilter listFilter) {
         return resolvePredicates(AnnouncementOverviewItem.class, listFilter, (root, builder, parameters) -> {
-            final List<Predicate> predicates = new ArrayList<>(6);
+            final List<Predicate> predicates = new ArrayList<>(7);
             if (StringUtils.isNotEmpty(listFilter.getContent())) {
                 final String searchText = "%" + listFilter.getContent().toLowerCase() + "%";
                 predicates.add(builder.or(
@@ -45,8 +46,11 @@ public class AnnouncementRepositoryImpl extends BaseRepository implements Announ
             if (StringUtils.isNotEmpty(listFilter.getCurrencySign())) {
                 predicates.add(builder.equal(root.get(AnnouncementOverviewItem_.currencySign), listFilter.getCurrencySign()));
             }
-            if (listFilter.getModerationStatusId() != null) {
-                predicates.add(builder.equal(root.get(AnnouncementOverviewItem_.moderationStatusId), listFilter.getModerationStatusId()));
+            if (listFilter.getModerationStatusIds() != null && !listFilter.getModerationStatusIds().isEmpty()) {
+                predicates.add(root.get(AnnouncementOverviewItem_.moderationStatusId).in(listFilter.getModerationStatusIds()));
+            }
+            if (listFilter.getReadyForReview() != null) {
+                predicates.add(builder.isTrue(root.get(AnnouncementOverviewItem_.readyForReview)));
             }
             if (listFilter.getUserId() != null) {
                 predicates.add(builder.equal(root.get(AnnouncementOverviewItem_.userId), listFilter.getUserId()));
@@ -81,10 +85,19 @@ public class AnnouncementRepositoryImpl extends BaseRepository implements Announ
 
     @Override
     public void updateModerationStatus(final ModerationForm moderationForm) {
-        entityManager.createQuery("update Announcement set moderationStatus.moderationStatusId=:moderationStatus WHERE announcementId=:announcementId")
-                .setParameter("moderationStatus", moderationForm.getModerationStatusId())
-                .setParameter("announcementId", moderationForm.getAnnouncementId())
-                .executeUpdate();
+        if (IConstants.MODERATION_STATUS_DECLINED_ID.equals(moderationForm.getModerationStatusId())) {
+            entityManager.createQuery("update Announcement set moderationStatus.moderationStatusId=:moderationStatus, moderationText=:moderationText, readyForReview=false WHERE announcementId=:announcementId")
+                    .setParameter("moderationStatus", moderationForm.getModerationStatusId())
+                    .setParameter("announcementId", moderationForm.getAnnouncementId())
+                    .setParameter("moderationText", moderationForm.getText())
+                    .executeUpdate();
+        } else {
+            entityManager.createQuery("update Announcement set moderationStatus.moderationStatusId=:moderationStatus, moderationText=:moderationText WHERE announcementId=:announcementId")
+                    .setParameter("moderationStatus", moderationForm.getModerationStatusId())
+                    .setParameter("announcementId", moderationForm.getAnnouncementId())
+                    .setParameter("moderationText", moderationForm.getText())
+                    .executeUpdate();
+        }
     }
 
     @Override

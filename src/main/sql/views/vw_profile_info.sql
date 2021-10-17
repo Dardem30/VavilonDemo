@@ -6,4 +6,5 @@ SELECT u.userid
       , (SELECT COUNT(*) FROM announcement a WHERE a.userid = u.userid) AS countannouncements
       , (SELECT SUM(a.rating) / COUNT(*) FROM announcement a WHERE a.userid = u.userid) AS averagerate
       , (SELECT COUNT(*) FROM comment c WHERE c.userid = u.userid) AS countcomments
+      , u.photo
 FROM "user" u

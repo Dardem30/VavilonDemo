@@ -11,11 +11,12 @@ import java.util.List;
 @Setter
 public class AnnouncementListFilter extends ListFilter {
     private String content;
-    private Long moderationStatusId;
+    private List<Long> moderationStatusIds;
     private String measureCode;
     private Double priceRangeStart;
     private Double priceRangeEnd;
     private String currencySign;
     private Long userId;
     private List<Coordinate> coordinates;
+    private Boolean readyForReview;
 }

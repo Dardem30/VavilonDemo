@@ -3,6 +3,7 @@ package com.vavilon.demo.bo.announcment;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 
@@ -25,4 +26,19 @@ public class Coordinate {
     private double lat;
     @Column(name = "lng")
     private double lng;
+
+    public void setPolygon(Polygon polygon) {
+        this.polygon = polygon;
+    }
+
+    @JsonProperty("polygon")
+    public void setPolygon(String polygonId) {
+        if (polygonId != null) {
+            final Polygon polygon = new Polygon();
+            polygon.setPolygonId(Long.valueOf(polygonId));
+            this.polygon = polygon;
+        } else {
+            this.polygon = null;
+        }
+    }
 }

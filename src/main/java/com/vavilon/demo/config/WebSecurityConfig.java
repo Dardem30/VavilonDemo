@@ -101,6 +101,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/announcement/gallery").permitAll()
                 .antMatchers("/announcement/getModerationStatuses").permitAll()
                 .antMatchers("/announcement/listComments").permitAll()
+                .antMatchers("/announcement/listAnnouncementsForUser").permitAll()
                 .antMatchers("/readProfile").permitAll()
                 .anyRequest().authenticated()
                 .and()

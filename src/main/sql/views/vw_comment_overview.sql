@@ -3,6 +3,7 @@ CREATE VIEW vw_comment_overview AS
 SELECT c.commentid
      , c.text
      , c.createtime
+     , c.userid
      , CONCAT(u.firstname, ' ', u.lastname) AS username
      , c.announcementid
      , arh.rate

@@ -1,9 +1,12 @@
 package com.vavilon.demo.bo.bean;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class ModerationForm {
     private Long announcementId;
     private Long moderationStatusId;
+    private String text;
 }

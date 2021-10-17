@@ -22,6 +22,7 @@ public abstract class Announcement_ {
 	public static volatile SingularAttribute<Announcement, Address> address;
 	public static volatile SingularAttribute<Announcement, String> currencySign;
 	public static volatile SetAttribute<Announcement, Polygon> polygons;
+	public static volatile SingularAttribute<Announcement, String> moderationText;
 	public static volatile SingularAttribute<Announcement, Date> announcementDate;
 	public static volatile SingularAttribute<Announcement, Double> rating;
 	public static volatile SingularAttribute<Announcement, ModerationStatus> moderationStatus;
@@ -30,6 +31,7 @@ public abstract class Announcement_ {
 	public static volatile SingularAttribute<Announcement, UserClient> userClient;
 	public static volatile SingularAttribute<Announcement, BigDecimal> price;
 	public static volatile SingularAttribute<Announcement, Long> announcementId;
+	public static volatile SingularAttribute<Announcement, Boolean> readyForReview;
 	public static volatile SingularAttribute<Announcement, AnnouncementType> announcementType;
 	public static volatile SingularAttribute<Announcement, String> text;
 	public static volatile SingularAttribute<Announcement, UserLight> user;
@@ -40,6 +42,7 @@ public abstract class Announcement_ {
 	public static final String ADDRESS = "address";
 	public static final String CURRENCY_SIGN = "currencySign";
 	public static final String POLYGONS = "polygons";
+	public static final String MODERATION_TEXT = "moderationText";
 	public static final String ANNOUNCEMENT_DATE = "announcementDate";
 	public static final String RATING = "rating";
 	public static final String MODERATION_STATUS = "moderationStatus";
@@ -48,6 +51,7 @@ public abstract class Announcement_ {
 	public static final String USER_CLIENT = "userClient";
 	public static final String PRICE = "price";
 	public static final String ANNOUNCEMENT_ID = "announcementId";
+	public static final String READY_FOR_REVIEW = "readyForReview";
 	public static final String ANNOUNCEMENT_TYPE = "announcementType";
 	public static final String TEXT = "text";
 	public static final String USER = "user";

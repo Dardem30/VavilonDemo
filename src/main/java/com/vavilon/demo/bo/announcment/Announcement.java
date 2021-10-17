@@ -60,6 +60,8 @@ public class Announcement {
     private String currencySign;
     @Column(name = "text")
     private String text;
+    @Column(name = "moderationtext")
+    private String moderationText;
     @Column(name = "params")
     @Type(type = "JsonBParamsType")
     private Params params;
@@ -75,6 +77,8 @@ public class Announcement {
     private ModerationStatus moderationStatus;
     @Column(name = "rating")
     private Double rating;
+    @Column(name = "readyforreview")
+    private boolean readyForReview;
 
     public void setPolygons(Set<Polygon> polygons) {
         if (polygons != null) {

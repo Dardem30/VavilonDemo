@@ -37,6 +37,10 @@ public class AnnouncementOverviewItem {
     private String moderationStatusName;
     @Column(name = "username")
     private String userName;
+    @Column(name = "ownerphoto")
+    private String ownerPhoto;
     @Column(name = "rating")
     private Double rating;
+    @Column(name = "readyforreview")
+    private boolean readyForReview;
 }

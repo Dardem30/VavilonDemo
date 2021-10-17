@@ -18,6 +18,8 @@ public class CommentOverviewItem {
     private Long commentId;
     @Column(name = "announcementid")
     private Long announcementId;
+    @Column(name = "userid")
+    private Long userId;
     @Column(name = "text")
     private String text;
     @Column(name = "username")

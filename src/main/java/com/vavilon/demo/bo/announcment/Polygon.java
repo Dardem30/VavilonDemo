@@ -2,6 +2,7 @@ package com.vavilon.demo.bo.announcment;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,6 +26,21 @@ public class Polygon {
     private Announcement announcement;
     @OneToMany(mappedBy = "polygon", cascade = CascadeType.ALL)
     private List<Coordinate> coordinates;
+
+    public void setAnnouncement(Announcement announcement) {
+        this.announcement = announcement;
+    }
+
+    @JsonProperty("announcement")
+    public void setAnnouncement(String announcementId) {
+        if (announcementId != null) {
+            final Announcement announcement = new Announcement();
+            announcement.setAnnouncementId(Long.valueOf(announcementId));
+            this.announcement = announcement;
+        } else {
+            this.announcement = null;
+        }
+    }
 
     public void setCoordinates(List<Coordinate> coordinates) {
         if (coordinates != null) {

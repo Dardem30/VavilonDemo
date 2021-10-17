@@ -20,6 +20,8 @@ public class ProfileInfo {
     private String info;
     @Column(name = "username")
     private String username;
+    @Column(name = "photo")
+    private String photo;
     @Column(name = "countannouncements")
     private Integer countAnnouncements;
     @Column(name = "countcomments")

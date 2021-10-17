@@ -20,6 +20,8 @@ public class UserLight {
     private String firstName;
     @Column(name = "lastname")
     private String lastName;
+    @Column(name = "photo")
+    private String photo;
 
     public UserLight(Long userId) {
         this.userId = userId;

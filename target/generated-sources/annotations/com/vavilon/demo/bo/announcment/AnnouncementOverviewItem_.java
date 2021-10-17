@@ -8,6 +8,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(AnnouncementOverviewItem.class)
 public abstract class AnnouncementOverviewItem_ {
 
+	public static volatile SingularAttribute<AnnouncementOverviewItem, String> ownerPhoto;
 	public static volatile SingularAttribute<AnnouncementOverviewItem, String> image;
 	public static volatile SingularAttribute<AnnouncementOverviewItem, String> moderationStatusName;
 	public static volatile SingularAttribute<AnnouncementOverviewItem, String> currencySign;
@@ -20,8 +21,10 @@ public abstract class AnnouncementOverviewItem_ {
 	public static volatile SingularAttribute<AnnouncementOverviewItem, String> measureCode;
 	public static volatile SingularAttribute<AnnouncementOverviewItem, Double> price;
 	public static volatile SingularAttribute<AnnouncementOverviewItem, Long> announcementId;
+	public static volatile SingularAttribute<AnnouncementOverviewItem, Boolean> readyForReview;
 	public static volatile SingularAttribute<AnnouncementOverviewItem, String> text;
 
+	public static final String OWNER_PHOTO = "ownerPhoto";
 	public static final String IMAGE = "image";
 	public static final String MODERATION_STATUS_NAME = "moderationStatusName";
 	public static final String CURRENCY_SIGN = "currencySign";
@@ -34,6 +37,7 @@ public abstract class AnnouncementOverviewItem_ {
 	public static final String MEASURE_CODE = "measureCode";
 	public static final String PRICE = "price";
 	public static final String ANNOUNCEMENT_ID = "announcementId";
+	public static final String READY_FOR_REVIEW = "readyForReview";
 	public static final String TEXT = "text";
 
 }

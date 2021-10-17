@@ -30,3 +30,5 @@ CREATE INDEX ix_comment_announcementid ON comment (announcementid);
 CREATE INDEX ix_comment_rootcommentid ON comment (rootcommentid);
 ALTER TABLE "user" ADD info text null;
 ALTER TABLE "user" ADD photo varchar(50) null;
+ALTER TABLE announcement ADD moderationtext text null;
+ALTER TABLE announcement ADD readyforreview boolean not null default false;

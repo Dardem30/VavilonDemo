@@ -20,6 +20,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -31,9 +32,6 @@ public class AnnouncementService {
     @Transactional
     public ResponseForm<Announcement> saveAnnouncement(final Announcement announcement) {
         final Long userId = User.get().getAppUser().getUserId();
-        final ModerationStatus toBeReviewedStatus = new ModerationStatus();
-        toBeReviewedStatus.setModerationStatusId(IConstants.MODERATION_STATUS_TO_BE_REVIEWED_ID);
-        announcement.setModerationStatus(toBeReviewedStatus);
         for (final Contact contact : announcement.getContacts()) {
             contact.setUserId(userId);
         }
@@ -47,6 +45,16 @@ public class AnnouncementService {
             polygon.setAnnouncement(announcement);
         }
         announcement.setUser(new UserLight(userId));
+        if (announcement.isReadyForReview()) {
+            announcement.setModerationText(null);
+            final ModerationStatus toBeReviewedStatus = new ModerationStatus();
+            toBeReviewedStatus.setModerationStatusId(IConstants.MODERATION_STATUS_TO_BE_REVIEWED_ID);
+            announcement.setModerationStatus(toBeReviewedStatus);
+        } else if (announcement.getAnnouncementId() == null) {
+            final ModerationStatus toBeReviewedStatus = new ModerationStatus();
+            toBeReviewedStatus.setModerationStatusId(IConstants.MODERATION_STATUS_TO_BE_REVIEWED_ID);
+            announcement.setModerationStatus(toBeReviewedStatus);
+        }
         announcementRepository.save(announcement);
         return new ResponseForm<>("Announcement is successfully saved", true, announcement);
     }
@@ -55,7 +63,7 @@ public class AnnouncementService {
     public ResponseForm<SearchResult<AnnouncementOverviewItem>> listAnnouncements(final AnnouncementListFilter listFilter) {
         final AppUser user = User.getCurrentLoggedInUser();
         if (user == null || !Role.ADMIN.equals(user.getRole())) {
-            listFilter.setModerationStatusId(IConstants.MODERATION_STATUS_APPROVED_ID);
+            listFilter.setModerationStatusIds(Collections.singletonList(IConstants.MODERATION_STATUS_APPROVED_ID));
         }
         final SearchResult<AnnouncementOverviewItem> result = announcementRepository.listAnnouncements(listFilter);
         return new ResponseForm<>("Success", true, result);
