@@ -37,4 +37,8 @@ public class UserCardController extends CommonController {
     public @ResponseBody UserCard readUserCard(@RequestParam final Long userCardId) {
         return userCardService.readUserCard(userCardId);
     }
+    @DeleteMapping(path = "/deleteUserCards")
+    public void deleteAnnouncements(@RequestParam final List<Long> ids) {
+        bulkDelete(UserCard.class, ids, "userCardId");
+    }
 }

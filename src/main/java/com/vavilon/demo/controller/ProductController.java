@@ -95,6 +95,10 @@ public class ProductController extends CommonController {
             bulkDelete(Attachment.class, toBeDeletedIds, "attachmentId");
         }
     }
+    @DeleteMapping(path = "/deleteProducts")
+    public void deleteAnnouncements(@RequestParam final List<Long> ids) {
+        bulkDelete(Product.class, ids, "productId");
+    }
 
     @PostMapping(path = "/listProducts")
     public void listProduct(@RequestBody final ProductListFilter listFilter, final HttpServletResponse response) {

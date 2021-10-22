@@ -41,4 +41,8 @@ public class ContactController extends CommonController {
         final AppUser user = User.getCurrentLoggedInUser();
         return user == null ? new ArrayList<>() : contactService.getUserContacts(user.getUserId());
     }
+    @DeleteMapping(path = "/deleteContacts")
+    public void deleteAnnouncements(@RequestParam final List<Long> ids) {
+        bulkDelete(Contact.class, ids, "contactId");
+    }
 }

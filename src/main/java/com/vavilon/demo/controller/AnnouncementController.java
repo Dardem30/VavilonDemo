@@ -90,6 +90,10 @@ public class AnnouncementController extends CommonController {
     public void updateModerationStatus(@RequestBody final ModerationForm moderationForm) {
         announcementService.updateModerationStatus(moderationForm);
     }
+    @DeleteMapping(path = "/deleteAnnouncements")
+    public void deleteAnnouncements(@RequestParam final List<Long> ids) {
+        bulkDelete(Announcement.class, ids, "announcementId");
+    }
 
     @GetMapping(path = "/getModerationStatuses")
     public @ResponseBody
