@@ -51,7 +51,7 @@ public class UserService {
         activationCodeDateEnd.add(Calendar.HOUR, contextHolder.getActivationCodeLifespanInHours());
         user.setActive(false);
         user.setRole(Role.USER);
-        user.setActivationCode(UUID.randomUUID().toString());
+        user.setActivationCode(generateAuthCode());
         user.setActivationCodeDateEnd(activationCodeDateEnd.getTime());
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
@@ -62,6 +62,17 @@ public class UserService {
             throw e;
         }
         return new ResponseForm<>("User is successfully saved", true, user);
+    }
+    private String generateAuthCode() {
+        final int leftLimit = 48; // numeral '0'
+        final int rightLimit = 122; // letter 'z'
+        final int targetStringLength = 8;
+        final Random random = new Random();
+        return random.ints(leftLimit, rightLimit + 1)
+                .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+                .limit(targetStringLength)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
     }
 
     @Transactional
@@ -98,7 +109,7 @@ public class UserService {
         tokenDateExpiry.add(Calendar.HOUR, contextHolder.getResetPasswordTokenLifespanInHours());
         passwordResetTokenEntry.setExpiryDate(tokenDateExpiry.getTime());
         passwordResetTokenEntry.setUser(user);
-        passwordResetTokenEntry.setToken(UUID.randomUUID().toString());
+        passwordResetTokenEntry.setToken(generateAuthCode());
         passwordResetTokenEntry.setUrl(contextHolder.getResetPasswordUrl());
         passwordResetTokenRepository.save(passwordResetTokenEntry);
         emailService.sendResetPasswordMail(passwordResetTokenEntry, new Locale("en"));
@@ -136,5 +147,10 @@ public class UserService {
         user.setPhoto(uploadedPhotoId);
         userRepository.save(user);
         return uploadedPhotoId;
+    }
+
+    @Transactional(readOnly = true)
+    public AppUser findByLoginOrEmail(final String login, final String email) {
+        return userRepository.findByLoginOrEmail(login, email);
     }
 }
